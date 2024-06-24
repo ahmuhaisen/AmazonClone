@@ -1,0 +1,62 @@
+﻿@model UserDetailsViewModel
+
+<div class="d-flex justify-content-center h-100">
+    <div class="w-75">
+        <div class=" h2 fw-bold">
+            Welcome,
+            <span>@(Model.FullName)</span>
+        </div>
+        <hr class="text-muted mb-5" />
+
+        <div class="row d-flex justify-content-between">
+            <div class="col-md-3 col-sm-12">
+                <div class="mb-3">
+                    <img src="@(Model.ProfilePictureUrl)" class="rounded-circle img-fluid details-profile-picture" />
+                </div>
+                <div>
+                    <h4 class="fw-bold">@(Model.FullName)</h4>
+                    <p class="text-secondary fs-6">@(Model.Email)</p>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12">
+                <h3 class="fw-bold">Personal Information</h3>
+                <p class="text-secondary fs-6">Manage your personal information, including your contact details.</p>
+                <div class="mt-5 d-flex justify-content-between">
+
+                    <div class="card rounded-3 bg-light shadow px-4 py-4 w-50 me-2">
+                        <div class="d-flex justify-content-between">
+                            <p class="fs-5 fw-bold">User Name</p>
+                            <i class="fs-4 bi bi-person-circle text-warning"></i>
+                        </div>
+                        <div class="text-muted">
+                            <div>
+                                @(Model.FullName)
+                            </div>
+                            <div>
+                                @(Model.UserName)
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card rounded-3 bg-light shadow px-4 py-4 w-50 ms-2">
+                        <div class="d-flex justify-content-between">
+                            <p class="fs-5 fw-bold">User Role</p>
+                            <i class="fs-4 bi bi-person-vcard text-warning"></i>
+                        </div>
+                        <div class="text-muted">
+                            <div>
+                                @(string.Join(", ", Model.Roles))
+                            </div>
+                            
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

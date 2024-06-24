@@ -1,0 +1,45 @@
+﻿@model AdminDetailsProductVM
+
+
+@{
+    ViewBag.Title = $"{Model.Name} | Product Details";
+}
+
+<div class="d-flex justify-content-center my-5">
+    <div class="w-75">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="w-100 h-100 p-5 bg-white shadow rounded-3">
+                    <img src="@Model.ImageUrl" class="w-100 h-100" />
+                </div>
+            </div>
+            <div class="col-lg-7 d-flex align-items-center">
+                <div class="ps-2 text-start">
+                    <div class="badge badge-warning">
+                        @Model.Category.Name
+                    </div>
+                    <h2 class="fw-bolder">@Model.Name</h2>
+                    <p class="my-4">
+                        @Model.Description
+                    </p>
+                    <hr class="text-muted" />
+
+                    <div>
+                        <span class="fw-bolder h3">
+                            Price: @Model.ActualPrice.ToString("C")
+                            <span class="text-decoration-line-through text-danger h5 ms-2">@Model.Price.ToString("C")</span>
+                        </span>
+                    </div>
+
+                    <hr class="text-muted" />
+
+                    <div>
+                        <a asp-area="Admin" asp-controller="Product" asp-action="Upsert" asp-route-id="@Model.Id" class="btn btn-dark">Edit</a>
+                        <a onclick="DeleteProduct('/Admin/Product/Delete/@Model.Id')" class="btn btn-danger">Delete</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

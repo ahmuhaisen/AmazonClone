@@ -1,0 +1,50 @@
+﻿@* @model AdminIndexProductVM *@
+
+@{
+    ViewBag.Title = $"Products";
+}
+
+<link href="~/lib/datatables/css/datatables.bootstrap4.css" rel="stylesheet" />
+
+<div class="row d-flex justify-content-between mb-5">
+
+    <div class="col-6">
+        <h1>Products List</h1>
+        @* @if (Model.Category is null)
+        {
+            <h1>Products List</h1>
+        }
+        else
+        {
+             <h1><span class="badge bg-warning rounded-3"> <i class="@Model.Category.IconString me-2"></i> @Model.Category.Name</span> Products</h1>
+        }*@
+    </div>
+
+    <div class="col-3 text-end">
+        <a class="btn btn-dark text-light m-0 mt-2 grow-xsm"
+           asp-area="Admin" asp-controller="Product" asp-action="Upsert" asp-route-id="">
+            <i class="bi bi-plus-circle me-2 "></i>
+            Add New Product
+        </a>
+    </div>
+</div>
+
+<partial name="IndexDataTable" />
+
+
+@* @if (@Model.Products.Count() != 0)
+{
+    <partial name="IndexDataTable" />
+}
+else
+{
+     <partial name="_AdminNoItemsPartial" />
+}*@
+
+
+@section Scripts
+{
+    <script src="~/lib/datatables/js/jquery.datatables.js"></script>
+    <script src="~/lib/datatables/js/datatables.bootstrap4.js"></script>
+    <script src="~/js/adminproductsdatatable.js"></script>
+}

@@ -1,0 +1,47 @@
+﻿@model List<CategoryDto>
+
+
+<div class="row d-flex justify-content-between">
+
+    <div class="col-6">
+        <h1>List of Categories</h1>
+    </div>
+
+    <div class="col-3 text-end">
+        <a class="btn btn-dark text-light m-0 mt-2"
+           asp-area="Admin" asp-controller="Category" asp-action="Upsert" asp-route-id="">
+            <i class="bi bi-plus-circle me-2"></i>
+            Add New Category
+        </a>
+    </div>
+</div>
+
+<div class="row my-5">
+    @foreach (var obj in Model)
+    {
+        <div class="col-lg-3 col-md-4 mb-2 text-center">
+            <div class="card rounded-3 bg-light shadow-sm p-3">
+                <div class="card-body">
+                    <div class="categories-list-icon">
+                        <i class="@obj.IconString"></i>
+                    </div>
+                    <p class="fs-5 m-0">
+                        @obj.Name
+                    </p>
+                </div>
+                <div class="card-footer bg-light border-top-0">
+                    <a class="btn btn-warning text-light me-3"
+                       asp-area="Admin" asp-controller="Category" asp-action="Upsert" asp-route-id="@obj.Id">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <a class="btn btn-dark txt-light"
+                       asp-area="Admin" asp-controller="Product" asp-action="Index" asp-route-categoryId="@obj.Id">
+                        <i class="bi bi-list-ul"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>

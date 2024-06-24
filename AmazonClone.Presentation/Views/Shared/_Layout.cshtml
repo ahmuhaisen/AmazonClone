@@ -1,0 +1,121 @@
+﻿@using AmazonClone.Infrastructure.Utils
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] | Amazon</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AmazonClone.Presentation.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://kit.fontawesome.com/3aad9a9455.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light text-light bg-dark border-bottom p-3 mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="Master" asp-controller="Home" asp-action="Index">
+                    <img class="" src="~/images/amazon-logo.png" style="width: 120px" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    @if(User.IsInRole(RolesConsts.ADMIN_USER))
+                    {
+                        <partial name="_AdminNavBar"/>
+                    }
+                    else if (User.IsInRole(RolesConsts.CUSTOMER_USER))
+                    {
+                        <partial name="_CustomerNavBar" />
+                    }
+                </div>
+
+            </div>
+            <div class="navbar-collapse">
+
+            <partial name="_LoginPartial" />
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="container my-5" style="min-height: 500px">
+
+         <partial name="_Notifications" /> 
+
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <footer class="footer mb-0">
+        <div class="bg-dark text-light">
+            <div class="container text-center text-wrap">
+                <strong>Disclaimer: </strong>This Amazon clone project is a mere simulation and is not affiliated with Amazon in any way.
+            </div>
+        </div>
+        <div class="footer-links-area">
+            <div class="container text-black py-4">
+
+                <div class="d-flex justify-content-between">
+                    <div class="text-start">
+                        <strong class="m-0">Get to Know Us</strong>
+                        <div class="text-muted">
+                            <p class="m-0">Make Money with Us</p>
+                            <p class="m-0">Amazon Payment</p>
+                            <p class="m-0">Let Us Help You</p>
+                        </div>
+                    </div>
+                    <div class="text-start">
+                        <strong class="m-0">About Amazon</strong>
+                        <div class="text-muted">
+                            <p class="m-0">Amazon Business Card </p>
+                            <p class="m-0">Sell products on Amazon</p>
+                            <p class="m-0">Amazon and COVID-19</p>
+                        </div>
+                    </div>
+                    <div class="text-start">
+                        <strong class="m-0">Connect with Us</strong>
+                        <div class="text-muted">
+                            <p class="m-0">Shop with Points</p>
+                            <p class="m-0">Sell apps on Amazon</p>
+                            <p class="m-0">Shipping Rates & Policies</p>
+                        </div>
+                    </div>
+                    <div class="text-start">
+                        <strong class="m-0">Amazon Cares</strong>
+                        <div class="text-muted">
+                            <p class="m-0">Become an Affiliate</p>
+                            <p class="m-0">Reload Your Balance</p>
+                            <p class="m-0">Returns & Replacements</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" text-center mt-4">
+                    <img class="me-2 mt-2" src="~/images/amazon-logo-dark.png" style="width: 90px" />
+                    &copy2024 | Developed by <a href="https://github.com/ahmuhaisen" target="_blank">Ahmad Muhaisen</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/product.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

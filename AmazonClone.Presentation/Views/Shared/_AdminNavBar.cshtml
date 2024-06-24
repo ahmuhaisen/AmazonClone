@@ -1,0 +1,30 @@
+﻿
+
+
+
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="nav-link text-light" asp-area="" asp-controller="" asp-action="Index">Home</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Products
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item text-dark" asp-area="Admin" asp-controller="Product" asp-action="Index">Manage Products</a></li>
+            <li><a class="dropdown-item text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Manage Categories</a></li>
+        </ul>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            User Management
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item text-dark" asp-area="Admin" asp-controller="Users" asp-action="Index">All Users</a></li>
+            <li><a class="dropdown-item text-dark" asp-area="Admin" asp-controller="Roles" asp-action="Index">User Roles</a></li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" asp-area="" asp-controller="" asp-action="">Orders</a>
+    </li>
+</ul>
