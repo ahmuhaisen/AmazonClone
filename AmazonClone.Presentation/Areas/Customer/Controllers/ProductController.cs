@@ -21,14 +21,14 @@
 
             var productToDisplay = _productService.Get(x => x.Id == id);
 
-            if (productToDisplay != null)
+            if (productToDisplay is not null)
             {
                 CustomerDetailsProductViewModel model = _mapper.Map<CustomerDetailsProductViewModel>(productToDisplay);
                 //model.HasSize = productToDisplay.Category.HasSize;
                 return View(model);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(HomeController.Index));
         }
     }
 }

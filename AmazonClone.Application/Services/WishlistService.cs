@@ -23,7 +23,7 @@ namespace AmazonClone.Application.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<WishlistItem> GetCustomerWishlist(string customerId)
+        public IEnumerable<Product> GetCustomerWishlist(string customerId)
         {
             return _unitOfWork.Wishlist.GetCustomerWishlist(customerId);
         }

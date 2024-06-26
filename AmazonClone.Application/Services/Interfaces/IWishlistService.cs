@@ -11,6 +11,6 @@ namespace AmazonClone.Application.Services.Interfaces
     {
         void Add(WishlistItem item);
         void Remove(WishlistItem item);
-        IEnumerable<WishlistItem> GetCustomerWishlist(string customerId);
+        IEnumerable<Product> GetCustomerWishlist(string customerId);
     }
 }

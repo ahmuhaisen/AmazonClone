@@ -1,7 +1,6 @@
 ﻿using AmazonClone.Domain.Entities;
 using AmazonClone.Infrastructure.Data;
 using AmazonClone.Infrastructure.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 
 namespace AmazonClone.Infrastructure.Repositories
@@ -15,9 +14,11 @@ namespace AmazonClone.Infrastructure.Repositories
             _db = db;
         }
 
-        public IEnumerable<WishlistItem> GetCustomerWishlist(string customerId)
+        public IEnumerable<Product> GetCustomerWishlist(string customerId)
         {
-            return _db.Wishlist.Include(x => x.Product).Where(x => x.UserId == customerId);
+            var productIds = _db.Wishlist.Where(x => x.UserId == customerId).Select(x => x.ProductId).ToList();
+            var result = _db.Products.Where(x => productIds.Contains(x.Id)).ToList();
+            return result;
         }
     }
 }

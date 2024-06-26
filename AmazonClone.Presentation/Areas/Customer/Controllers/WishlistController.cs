@@ -6,20 +6,25 @@ namespace AmazonClone.Presentation.Areas.Customer.Controllers
     public class WishlistController : Controller
     {
         private readonly IWishlistService _wishlistService;
+        private readonly IProductService _productService;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public WishlistController(IWishlistService wishlistService, UserManager<ApplicationUser> userManager)
+        public WishlistController(IWishlistService wishlistService, UserManager<ApplicationUser> userManager, IProductService productService)
         {
             _wishlistService = wishlistService;
             _userManager = userManager;
+            _productService = productService;
         }
 
+        
         public async Task<IActionResult> Index()
         {
             var wishlistItems = _wishlistService.GetCustomerWishlist(_userManager.GetUserAsync(User).Result.Id);
+
+
             WishlistViewModel model = new WishlistViewModel
             {
-                Products = wishlistItems.Select(x => x.Product).Select(p => new CustomerHomeProductViewModel
+                Products = wishlistItems.Select(p => new CustomerHomeProductViewModel
                 {
                     Id = p.Id,
                     ImageUrl = p.ImageUrl,
