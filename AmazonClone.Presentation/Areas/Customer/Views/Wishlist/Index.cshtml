@@ -1,0 +1,40 @@
+﻿@model WishlistViewModel
+
+@{
+    ViewBag.Title = "Wishlist";
+}
+
+
+<div class="text-center mt-5">
+    <h2 class="h2 fw-bolder">Wishlist</h2>
+
+
+    @if (Model.Products.Count() == 0)
+    {
+        <div class="row mt-5">
+            <div class="col-lg-5 col-sm-12 d-flex align-items-center justify-content-end">
+                <img src="~/images/empty-box.png" class="img-fluid" style="width: 350px" />
+            </div>
+            <div class="col-lg-7 col-sm-12 d-flex align-items-center">
+                <div class="card shadow-sm w-75 bg-white text-start p-4 rounded-3">
+                    <div>
+                        <h4 class="fw-bold">It's empty here!</h4>
+                        <p class="my-4">"Don't let your wishlist collect dust. Add some items that bring joy to your life and watch as they become a reality with just a few clicks."</p>
+                        <div>
+                            <a asp-controller="Home" asp-action="" class="btn btn-warning px-3 py-2 fw-bold text-white grow-xsm">
+                                Go Shopping
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <partial name="_ProductsList" model="Model.Products" />
+    }
+
+
+
+</div>

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<CustomerHomeProductViewModel>
+
+
+<div class="row mt-5">
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-2 col-md-4 product-home-list-item grow-xsm">
+            <a asp-controller="Product" asp-action="Details" asp-route-id="@(product.Id)" class="d-flex justify-content-center bg-white shadow-sm rounded-3 p-3" title="View Product">
+                <img class="img-fluid" src="@product.ImageUrl" style="height: 200px; " />
+            </a>
+            <div class="text-start mt-3">
+                <p class="fw-bold h5">
+                    @product.Name
+                </p>
+                <small class="text-muted fw-light">
+                    @product.CategoryName
+                </small>
+                <div class="mt-4">
+                    <span class="fw-bolder fs-5">@product.ActualPrice.ToString("C")</span>
+                    <span class="text-muted text-decoration-line-through fs-6">@product.Price.ToString("C")</span>
+                    <p class="fw-bolder text-danger">(@(product.DiscountPercentage)% OFF)</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
