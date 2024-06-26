@@ -1,6 +1,49 @@
-﻿
+﻿@model CustomerHomeViewModel
+
 @{
-    ViewBag.Title = "Cutomer";
+    ViewBag.Title = "Cutomer Home";
 }
 
-<h1>Customer Home Page</h1>
+@* <h1>Customer Home Page</h1> *@
+
+
+<div class="text-center my-5 py-5">
+    <h3 class="h3 fw-bolder">Popular categories 🌟</h3>
+    <div class="mt-5">
+        @foreach (var category in Model.PopularCategories)
+        {
+            <a href="#" class="bg-white fs-2 shadow-sm rounded-3 text-muted mx-2 p-3">
+                <i class="@(category.IconString)" title="@(category.Name)"></i>
+            </a>
+        }
+    </div>
+</div>
+
+
+<div class="text-center mt-5">
+    <h3 class="h3 fw-bolder">Hot Deals 🔥</h3>
+    <div class="row mt-5">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col-lg-2 col-md-4 product-home-list-item grow-xsm">
+                <a asp-controller="Product" asp-action="Details" asp-route-id="@(product.Id)" class="d-flex justify-content-center bg-white shadow-sm rounded-3 p-3" title="View Product">
+                    <img class="img-fluid" src="@product.ImageUrl" style="height: 200px; " />
+                </a>
+                <div class="text-start mt-3">
+                    <p class="fw-bold h5">
+                        @product.Name
+                    </p>
+                    <small class="text-muted fw-light">
+                        @product.CategoryName
+                    </small>
+                    <div class="mt-4">
+                        <span class="fw-bolder fs-5">@product.ActualPrice.ToString("C")</span>
+                        <span class="text-muted text-decoration-line-through fs-6">@product.Price.ToString("C")</span>
+                        <p class="fw-bolder text-danger">(@(product.DiscountPercentage)% OFF)</p>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>

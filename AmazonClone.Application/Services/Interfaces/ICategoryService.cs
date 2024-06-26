@@ -15,5 +15,7 @@ namespace AmazonClone.Application.Services.Interfaces
         void Remove(Category Category);
 
         public IEnumerable<SelectListItem> GetCategoriesListItems();
+
+        public IEnumerable<Category> GetMostPopular();
     }
 }

@@ -22,5 +22,8 @@ namespace AmazonClone.Domain.Entities
         [ValidateNever]
         public string FullName => $"{FirstName} {LastName}";
 
+
+        public ICollection<WishlistItem> Wishlist { get; set; }
+
     }
 }

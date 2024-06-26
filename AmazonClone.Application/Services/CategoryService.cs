@@ -57,5 +57,10 @@ namespace AmazonClone.Application.Services
                 .OrderBy(s => s.Text)
                 .ToList();
         }
+
+        public IEnumerable<Category> GetMostPopular()
+        {
+           return _unitOfWork.Category.GetMostPopular();
+        }
     }
 }

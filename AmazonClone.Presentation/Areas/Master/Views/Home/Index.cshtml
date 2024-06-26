@@ -1,5 +1,4 @@
-﻿
-@inject SignInManager<ApplicationUser> SignInManager
+﻿@inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
 
@@ -29,9 +28,22 @@
                 <p class="w-75 my-5">
                     Don't miss it out! Only today, get free <strong>Next Day</strong> delivery on all your orders.
                 </p>
-                <a href="#" class="btn btn-light rounded-pill shadow grow-sm fw-bolder text-secondary">
-                    Browse Products
-                </a>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    @if(User.IsInRole(RolesConsts.ADMIN_USER))
+                    {
+                        <a asp-area="Admin" asp-controller="Home" class="btn btn-light rounded-pill shadow grow-sm fw-bolder text-secondary">
+                            Go to Dashboard
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-area="Customer" asp-controller="Home" class="btn btn-light rounded-pill shadow grow-sm fw-bolder text-secondary">
+                            Browse Products
+                        </a>
+                    }
+                }
+                
             </div>
             <div class="col-6 d-md-flex d-sm-none">
                 <img src="~/images/master-card-img.png" class="master-page-header-card-image img-fluied w-100" />

@@ -1,0 +1,58 @@
+﻿@model CustomerDetailsProductViewModel
+
+@{
+    ViewBag.Title = $"{Model.Name} | Product Details";
+}
+
+<div class="d-flex justify-content-center my-5">
+    <div class="w-75">
+        <div class="row">
+            <div class="col-lg-6 " style="height: 500px">
+                <div class="w-100 h-100 p-3 bg-white shadow-sm rounded-3">
+                    <img src="@Model.ImageUrl" class="w-100 h-100" style="object-fit: contain"/>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="ps-2 text-start">
+                    <h2 class="fw-bolder">@Model.Name</h2>
+                    <p class="my-3 text-muted">
+                        @Model.Description
+                    </p>
+                    <hr class="text-muted" />
+
+                    @if (Model.HasSize)
+                    {
+                        <p class="fw-bolder h3 my-2">Choose a size</p>
+
+                        <div>
+
+                        </div>
+
+                        <hr class="text-muted" />
+                    }
+
+
+                    <div>
+                        <span class="fw-bolder h3">
+                            Price: @Model.ActualPrice.ToString("C")
+                            <span class="text-decoration-line-through text-danger h5 ms-2">@Model.Price.ToString("C")</span>
+                        </span>
+                    </div>
+
+                    <hr class="text-muted" />
+
+                    <div>
+                        <a href="#" class="btn btn-warning btn-lg px-3 py-2 fw-bold text-white me-3 grow-xsm">
+                            Buy Now
+                        </a>
+                        <a href="#" class="btn btn-dark btn-lg px-3 py-2 fw-bold text-white grow-xsm">
+                            <i class="bi bi-cart-plus"></i>
+                            Add
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

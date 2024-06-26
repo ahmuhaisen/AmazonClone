@@ -1,5 +1,6 @@
 ﻿global using AmazonClone.Domain.Entities;
 global using AmazonClone.Domain.ViewModels.Admin;
+global using AmazonClone.Domain.ViewModels.Customer;
 global using AutoMapper;
 global using AmazonClone.Application.Services.Interfaces;
 global using AmazonClone.Infrastructure.Data;

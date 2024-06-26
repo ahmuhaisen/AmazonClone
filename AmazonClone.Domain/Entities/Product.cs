@@ -15,5 +15,7 @@ namespace AmazonClone.Domain.Entities
 
         [ValidateNever]
         public Category Category { get; set; }
+
+        public IEnumerable<WishlistItem> Wishlist { get; set; }
     }
 }
