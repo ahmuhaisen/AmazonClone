@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-6 " style="height: 500px">
                 <div class="w-100 h-100 p-3 bg-white shadow-sm rounded-3">
-                    <img src="@Model.ImageUrl" class="w-100 h-100" style="object-fit: contain"/>
+                    <img src="@Model.ImageUrl" class="w-100 h-100" style="object-fit: contain" />
                 </div>
             </div>
             <div class="col-lg-6">
@@ -23,14 +23,11 @@
                     @if (Model.HasSize)
                     {
                         <p class="fw-bolder h3 my-2">Choose a size</p>
-
                         <div>
-
+                            <!-- Size selection logic -->
                         </div>
-
                         <hr class="text-muted" />
                     }
-
 
                     <div>
                         <span class="fw-bolder h3">
@@ -41,13 +38,17 @@
 
                     <hr class="text-muted" />
 
-                    <div>
-                        <a href="#" class="btn btn-warning btn-lg px-3 py-2 fw-bold text-white me-3 grow-xsm">
+                    <div class="btn-group shadow-sm">
+                        <a href="#" class="btn btn-warning px-3 py-2 fw-bold text-white grow-xsm">
                             Buy Now
                         </a>
-                        <a href="#" class="btn btn-dark btn-lg px-3 py-2 fw-bold text-white grow-xsm">
+                        <a id="wishlist-button" data-productid="@Model.Id" class="btn btn-danger px-3 py-2 fw-bold text-white grow-xsm">
+                            <i class="bi bi-heart"></i>
+                            Add to wishlist
+                        </a>
+                        <a href="#" class="btn btn-dark px-3 py-2 fw-bold text-white grow-xsm">
                             <i class="bi bi-cart-plus"></i>
-                            Add
+                            Add to cart
                         </a>
                     </div>
                 </div>
@@ -56,3 +57,9 @@
     </div>
 </div>
 
+
+@section Scripts {
+    @{
+        <script src="~/js/customer-product-details.js"></script>
+    }
+}

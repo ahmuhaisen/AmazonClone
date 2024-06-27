@@ -16,7 +16,7 @@ namespace AmazonClone.Infrastructure.Data
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,6 +37,9 @@ namespace AmazonClone.Infrastructure.Data
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CategoryConfiguration).Assembly);
         }
 
-       
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+                    => optionsBuilder.LogTo(Console.WriteLine);
+
     }
 }

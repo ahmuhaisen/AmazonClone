@@ -1,4 +1,5 @@
 ﻿using AmazonClone.Domain.Entities;
+using AmazonClone.Domain.ViewModels.Customer;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,6 @@ namespace AmazonClone.Application.Services.Interfaces
 
         string UpsertProductImage(string ImageUrl, IFormFile? file, string wwwRootPath);
 
-
+        public IEnumerable<CustomerHomeProductViewModel> GetHomeProductsList(int? categoryId = null);
     }
 }

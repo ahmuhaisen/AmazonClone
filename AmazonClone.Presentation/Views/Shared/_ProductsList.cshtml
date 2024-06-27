@@ -1,10 +1,14 @@
 ﻿@model IEnumerable<CustomerHomeProductViewModel>
 
-
 <div class="row mt-5">
     @foreach (var product in Model)
     {
-        <div class="col-lg-2 col-md-4 product-home-list-item grow-xsm">
+        <div class="col-lg-2 col-md-4 product-home-list-item">
+            <div class="text-end position-absolute">
+                <a class="wishlist-button btn btn-danger btn wishlist-icon" data-productid="@product.Id">
+                    <i class="bi bi-heart"></i>
+                </a>
+            </div>
             <a asp-controller="Product" asp-action="Details" asp-route-id="@(product.Id)" class="d-flex justify-content-center bg-white shadow-sm rounded-3 p-3" title="View Product">
                 <img class="img-fluid" src="@product.ImageUrl" style="height: 200px; " />
             </a>
@@ -24,3 +28,4 @@
         </div>
     }
 </div>
+

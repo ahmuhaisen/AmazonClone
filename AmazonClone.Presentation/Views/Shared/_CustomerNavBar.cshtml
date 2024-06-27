@@ -5,12 +5,18 @@
 
 <ul class="navbar-nav flex-grow-1">
     <li class="nav-item">
-        <a class="nav-link text-light grow mx-3" asp-area="Customer" asp-controller="Wishlist">
+        @if (false)
+        {
+            <span class="badge bg-warning rounded-circle text-center" style="position: absolute; left: 205px; width: 25px; height: 25px">
+                
+            </span>
+        }
+        <a class="nav-link text-light grow mx-3" asp-area="Customer" asp-controller="Wishlist" asp-action="Index">
             <i class="bi bi-heart nav-icon"></i>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-light grow mx-3" asp-area="Customer" asp-controller="Cart" asp-route-userId="@(UserManager.GetUserId(User))">
+        <a class="nav-link text-light grow mx-3" asp-area="Customer" asp-controller="Cart"  asp-route-userId="@(UserManager.GetUserId(User))">
             <i class="bi bi-cart3 nav-icon"></i>
         </a>
     </li>

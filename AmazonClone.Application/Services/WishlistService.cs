@@ -4,6 +4,7 @@ using AmazonClone.Infrastructure.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,11 +19,28 @@ namespace AmazonClone.Application.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void Add(WishlistItem item)
+
+
+        public bool IsProductInCustomerWishlist(string customerId, int productId)
         {
-            throw new NotImplementedException();
+            if(string.IsNullOrEmpty(customerId) || productId == 0)
+                return true;
+
+            return _unitOfWork.Wishlist.IsProductInCustomerWishlist(customerId, productId);
         }
 
+
+
+        public void Add(WishlistItem item)
+        {
+            _unitOfWork.Wishlist.Create(item);
+            _unitOfWork.Save();
+        }
+
+        public WishlistItem Get(Expression<Func<WishlistItem, bool>> filter)
+        {
+            return _unitOfWork.Wishlist.Get(filter);
+        }
         public IEnumerable<Product> GetCustomerWishlist(string customerId)
         {
             return _unitOfWork.Wishlist.GetCustomerWishlist(customerId);
@@ -30,7 +48,10 @@ namespace AmazonClone.Application.Services
 
         public void Remove(WishlistItem item)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Wishlist.Remove(item);
+            _unitOfWork.Save();
         }
+
+      
     }
 }

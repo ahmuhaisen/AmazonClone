@@ -1,5 +1,6 @@
 ﻿using AmazonClone.Application.Services.Interfaces;
 using AmazonClone.Domain.Entities;
+using AmazonClone.Domain.ViewModels.Customer;
 using AmazonClone.Infrastructure.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,38 +22,18 @@ namespace AmazonClone.Application.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void Create(Product Product)
-        {
-            _unitOfWork.Product.Create(Product);
-            _unitOfWork.Save();
-        }
-
-        public Product Get(Expression<Func<Product, bool>> filter)
-        {
-            return _unitOfWork.Product.Get(filter);
-        }
-
-        public IEnumerable<Product> GetAll()
-        {
-            return _unitOfWork.Product.GetAll();
-        }
-
-        public IEnumerable<Product> GetAllWithFilter()
-        {
-            return _unitOfWork.Product.GetAll();
-        }
-
-        public IEnumerable<Product> GetAllByCategoryId(int categoryId)
-        {
-
-            var result = _unitOfWork.Product.GetAllByCategoryID(categoryId);
-            return result;
-
-        }
 
         public void Remove(Product Product)
         {
             _unitOfWork.Product.Remove(Product);
+            _unitOfWork.Save();
+        }
+
+
+
+        public void Create(Product Product)
+        {
+            _unitOfWork.Product.Create(Product);
             _unitOfWork.Save();
         }
 
@@ -88,6 +69,45 @@ namespace AmazonClone.Application.Services
         }
 
 
-    
+
+        public Product Get(Expression<Func<Product, bool>> filter)
+        {
+            return _unitOfWork.Product.Get(filter);
+        }
+
+        public IEnumerable<Product> GetAll()
+        {
+            return _unitOfWork.Product.GetAll();
+        }
+
+        public IEnumerable<Product> GetAllByCategoryId(int categoryId)
+        {
+
+            var result = _unitOfWork.Product.GetAllByCategoryID(categoryId);
+            return result;
+
+        }
+
+        public IEnumerable<CustomerHomeProductViewModel> GetHomeProductsList(int? categoryId = null)
+        {
+            if (categoryId is null or 0)
+                return GetAll().Select(x => ConvertProductToViewModel(x)).ToList();
+
+
+            return GetAllByCategoryId((int)categoryId).Select(x => ConvertProductToViewModel(x)).ToList();
+        }
+
+
+
+
+        private CustomerHomeProductViewModel ConvertProductToViewModel(Product product) => new CustomerHomeProductViewModel
+            {
+                Id = product.Id,
+                ImageUrl = product.ImageUrl,
+                Name = product.Name.Length >= 25 ? $"{product.Name.Substring(0, 25)}.." : product.Name,
+                CategoryName = product.Category.Name.ToUpper(),
+                DiscountPercentage = product.DiscountPercentage,
+                Price = product.Price,
+            };
     }
 }

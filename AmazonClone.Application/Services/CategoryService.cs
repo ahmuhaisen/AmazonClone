@@ -1,5 +1,6 @@
 ﻿using AmazonClone.Application.Services.Interfaces;
 using AmazonClone.Domain.Entities;
+using AmazonClone.Domain.ViewModels.Customer;
 using AmazonClone.Infrastructure.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq.Expressions;
@@ -58,9 +59,11 @@ namespace AmazonClone.Application.Services
                 .ToList();
         }
 
-        public IEnumerable<Category> GetMostPopular()
+        public IEnumerable<CustomerHomeCategoryViewModel> GetMostPopular()
         {
-           return _unitOfWork.Category.GetMostPopular();
+            return _unitOfWork.Category.GetMostPopular()
+                                       .Select(x => new CustomerHomeCategoryViewModel { Id = x.Id, Name = x.Name, IconString = x.IconString })
+                                       .ToList();
         }
     }
 }

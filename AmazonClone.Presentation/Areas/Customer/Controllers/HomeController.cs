@@ -15,27 +15,12 @@ namespace AmazonClone.Presentation.Areas.Customer.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(int? categoryId = null)
         {
             var model = new CustomerHomeViewModel
             {
-                PopularCategories = _categoryService
-                                                .GetMostPopular()
-                                                .Select(x => new CustomerHomeCategoryViewModel { Id = x.Id, Name = x.Name, IconString = x.IconString })
-                                                .ToList(),
-
-                Products = _productService
-                                                .GetAll()
-                                                .Select(x => new CustomerHomeProductViewModel
-                                                {
-                                                    Id = x.Id,
-                                                    ImageUrl = x.ImageUrl,
-                                                    Name = x.Name.Length >= 25 ? $"{x.Name.Substring(0, 25)}.." : x.Name, 
-                                                    CategoryName = x.Category.Name.ToUpper(),
-                                                    DiscountPercentage = x.DiscountPercentage,
-                                                    Price = x.Price
-                                                })
-                                                .ToList()
+                PopularCategories = _categoryService.GetMostPopular(),
+                Products = _productService.GetHomeProductsList(categoryId)
             };
             return View(model);
         }

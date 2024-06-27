@@ -1,4 +1,5 @@
 ﻿using AmazonClone.Domain.Entities;
+using AmazonClone.Domain.ViewModels.Customer;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq.Expressions;
 
@@ -16,6 +17,6 @@ namespace AmazonClone.Application.Services.Interfaces
 
         public IEnumerable<SelectListItem> GetCategoriesListItems();
 
-        public IEnumerable<Category> GetMostPopular();
+        public IEnumerable<CustomerHomeCategoryViewModel> GetMostPopular();
     }
 }

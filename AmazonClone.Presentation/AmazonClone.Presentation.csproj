@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Content Remove="Areas\Customer\Shared\_Notifications.cshtml" />
+	  <Content Remove="Areas\Customer\Views\Shared\_Notifications.cshtml" />
 	  <Content Remove="Areas\Master\Views\Shared\_Notifications.cshtml" />
 	</ItemGroup>
 
@@ -37,7 +37,7 @@
 
 	<ItemGroup>
 		<None Include="Areas\Admin\Views\Shared\_Notifications.cshtml" />
-		<None Include="Areas\Customer\Shared\_Notifications.cshtml" />
+		<None Include="Areas\Customer\Views\Shared\_Notifications.cshtml" />
 		<None Include="Areas\Master\Views\Shared\_Notifications.cshtml" />
 		<None Include="Views\Shared\Error.cshtml" />
 		<None Include="Views\Shared\_Layout.cshtml" />
