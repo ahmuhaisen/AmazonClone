@@ -1,12 +1,12 @@
 ﻿using AmazonClone.Application.Services.Interfaces;
 using AmazonClone.Domain.Entities;
+using AmazonClone.Domain.ViewModels.Customer;
 using AmazonClone.Infrastructure.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AmazonClone.Application.Services
 {
@@ -14,19 +14,9 @@ namespace AmazonClone.Application.Services
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public WishlistService(IUnitOfWork unitOfWork)
+        public WishlistService(IUnitOfWork unitOfWork, IProductService productService)
         {
             _unitOfWork = unitOfWork;
-        }
-
-
-
-        public bool IsProductInCustomerWishlist(string customerId, int productId)
-        {
-            if(string.IsNullOrEmpty(customerId) || productId == 0)
-                return true;
-
-            return _unitOfWork.Wishlist.IsProductInCustomerWishlist(customerId, productId);
         }
 
 
@@ -37,14 +27,20 @@ namespace AmazonClone.Application.Services
             _unitOfWork.Save();
         }
 
+
+
+
         public WishlistItem Get(Expression<Func<WishlistItem, bool>> filter)
         {
             return _unitOfWork.Wishlist.Get(filter);
         }
-        public IEnumerable<Product> GetCustomerWishlist(string customerId)
+
+        public IEnumerable<Product> GetCustomerWishlistProducts(string userId)
         {
-            return _unitOfWork.Wishlist.GetCustomerWishlist(customerId);
+            return _unitOfWork.Wishlist.GetCustomerWishlist(userId);
         }
+
+
 
         public void Remove(WishlistItem item)
         {
@@ -52,6 +48,16 @@ namespace AmazonClone.Application.Services
             _unitOfWork.Save();
         }
 
-      
+        
+        
+        
+        public bool IsProductInCustomerWishlist(string userId, int productId)
+        {
+            if (string.IsNullOrEmpty(userId) || productId == 0)
+                return true;
+
+            return _unitOfWork.Wishlist.IsProductInCustomerWishlist(userId, productId);
+        }
+
     }
 }

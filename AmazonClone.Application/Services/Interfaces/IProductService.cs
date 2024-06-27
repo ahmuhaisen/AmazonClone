@@ -1,28 +1,34 @@
-﻿using AmazonClone.Domain.Entities;
-using AmazonClone.Domain.ViewModels.Customer;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Http;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+using AmazonClone.Domain.Entities;
+using AmazonClone.Domain.ViewModels.Customer;
 
 namespace AmazonClone.Application.Services.Interfaces
 {
     public interface IProductService
     {
-        IEnumerable<Product> GetAll();
-        Product Get(Expression<Func<Product, bool>> filter);
-
         void Create(Product Product);
-        void Update(Product Product);
-        void Remove(Product Product);
+
+
+
+        Product Get(Expression<Func<Product, bool>> filter);
+        IEnumerable<Product> GetAll();
         IEnumerable<Product> GetAllByCategoryId(int categoryId);
+        IEnumerable<CustomerHomeProductViewModel> GetHomeProductsList(int? categoryId = null);
 
 
+
+        void Update(Product Product);
         string UpsertProductImage(string ImageUrl, IFormFile? file, string wwwRootPath);
 
-        public IEnumerable<CustomerHomeProductViewModel> GetHomeProductsList(int? categoryId = null);
+
+
+
+        void Remove(Product Product);
+
+
+
+
+        CustomerHomeProductViewModel ConvertProductToViewModel(Product product);
     }
 }

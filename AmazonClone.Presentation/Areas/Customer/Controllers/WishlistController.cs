@@ -20,26 +20,18 @@ namespace AmazonClone.Presentation.Areas.Customer.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var wishlistItems = _wishlistService.GetCustomerWishlist(_userManager.GetUserAsync(User).Result.Id);
-            
-          
+            var wishlistProducts = _wishlistService.GetCustomerWishlistProducts(_userManager.GetUserAsync(User).Result!.Id);
 
-            WishlistViewModel model = new WishlistViewModel
-            {
-                Products = wishlistItems.Select(p => new CustomerHomeProductViewModel
-                {
-                    Id = p.Id,
-                    ImageUrl = p.ImageUrl,
-                    Name = p.Name.Length >= 25 ? $"{p.Name.Substring(0, 25)}.." : p.Name,
-                    CategoryName = p.Category.Name.ToUpper(),
-                    DiscountPercentage = p.DiscountPercentage,
-                    Price = p.Price
-                })
+
+            WishlistViewModel model = new() 
+            { 
+                Products = wishlistProducts.Select(_productService.ConvertProductToViewModel) 
             };
+            
             return View(model);
         }
 
-
+        
         [HttpPost]
         public async Task<JsonResult> AddToWishlist(int productId)
         {

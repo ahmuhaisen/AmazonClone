@@ -17,36 +17,25 @@ namespace AmazonClone.Application.Services
             _unitOfWork = unitOfWork;
         }
 
+
+
         public void Create(Category Category)
         {
             _unitOfWork.Category.Create(Category);
             _unitOfWork.Save();
         }
 
+
+
         public Category Get(Expression<Func<Category, bool>> filter)
         {
             return _unitOfWork.Category.Get(filter);
         }
-
         public IEnumerable<Category> GetAll()
         {
             return _unitOfWork.Category.GetAll();
         }
-
-        public void Remove(Category Category)
-        {
-            _unitOfWork.Category.Remove(Category);
-            _unitOfWork.Save();
-        }
-
-
-        public void Update(Category Category)
-        {
-            _unitOfWork.Category.Update(Category);
-            _unitOfWork.Save();
-        }
-
-        public IEnumerable<SelectListItem> GetCategoriesListItems()
+        public IEnumerable<SelectListItem> GetCategoriesAsListItems()
         {
             return _unitOfWork.Category
                 .GetAll()
@@ -58,12 +47,28 @@ namespace AmazonClone.Application.Services
                 .OrderBy(s => s.Text)
                 .ToList();
         }
-
         public IEnumerable<CustomerHomeCategoryViewModel> GetMostPopular()
         {
             return _unitOfWork.Category.GetMostPopular()
                                        .Select(x => new CustomerHomeCategoryViewModel { Id = x.Id, Name = x.Name, IconString = x.IconString })
                                        .ToList();
         }
+
+
+
+        public void Remove(Category Category)
+        {
+            _unitOfWork.Category.Remove(Category);
+            _unitOfWork.Save();
+        }
+
+
+
+        public void Update(Category Category)
+        {
+            _unitOfWork.Category.Update(Category);
+            _unitOfWork.Save();
+        }
+
     }
 }

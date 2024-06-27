@@ -50,7 +50,7 @@
                 // Create View
                 var upsertProductVM = new AdminUpsertProductVM()
                 {
-                    CategoryList = _categoryService.GetCategoriesListItems()
+                    CategoryList = _categoryService.GetCategoriesAsListItems()
                 };
                 return View(upsertProductVM);
 
@@ -62,7 +62,7 @@
                 var upsertProductVM = new AdminUpsertProductVM();
                 upsertProductVM = _mapper.Map<AdminUpsertProductVM>(productToUpdate);
 
-                upsertProductVM.CategoryList = _categoryService.GetCategoriesListItems();
+                upsertProductVM.CategoryList = _categoryService.GetCategoriesAsListItems();
 
                 return View(upsertProductVM);
             }
@@ -108,7 +108,7 @@
             }
             else
             {
-                upsertProductVM.CategoryList = _categoryService.GetCategoriesListItems();
+                upsertProductVM.CategoryList = _categoryService.GetCategoriesAsListItems();
                 return View(upsertProductVM);
             }
 

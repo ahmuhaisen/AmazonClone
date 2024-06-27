@@ -8,15 +8,20 @@ namespace AmazonClone.Application.Services.Interfaces
 {
     public interface ICategoryService
     {
+        void Create(Category Category);
+
+
         IEnumerable<Category> GetAll();
         Category Get(Expression<Func<Category, bool>> filter);
+        public IEnumerable<SelectListItem> GetCategoriesAsListItems();
+        /// <returns>Returns the top 4 popular categories, "Popular": The categories with most assigned products</returns>
+        public IEnumerable<CustomerHomeCategoryViewModel> GetMostPopular();
 
-        void Create(Category Category);
+
         void Update(Category Category);
+
+
         void Remove(Category Category);
 
-        public IEnumerable<SelectListItem> GetCategoriesListItems();
-
-        public IEnumerable<CustomerHomeCategoryViewModel> GetMostPopular();
     }
 }

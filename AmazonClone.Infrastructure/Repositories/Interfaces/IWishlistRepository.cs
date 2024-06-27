@@ -4,9 +4,9 @@ namespace AmazonClone.Infrastructure.Repositories.Interfaces
 {
     public interface IWishlistRepository : IGenericRepository<WishlistItem>
     {
-        IEnumerable<Product> GetCustomerWishlist(string customerId);
+        IEnumerable<Product> GetCustomerWishlist(string userId);
 
 
-        bool IsProductInCustomerWishlist(string customerId, int productId);
+        bool IsProductInCustomerWishlist(string userId, int productId);
     }
 }
