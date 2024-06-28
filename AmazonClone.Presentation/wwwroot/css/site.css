@@ -127,3 +127,16 @@ body {
     right: 0px
 
 }
+
+
+.cart-item-image {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+
+.delete-button:hover{
+    cursor: pointer;
+}

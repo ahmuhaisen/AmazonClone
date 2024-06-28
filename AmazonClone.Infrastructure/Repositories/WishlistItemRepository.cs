@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AmazonClone.Infrastructure.Repositories
 {
-    public class WishlistRepository : GenericRepository<WishlistItem>, IWishlistRepository
+    public class WishlistItemRepository : GenericRepository<WishlistItem>, IWishlistRepository
     {
         private readonly AppDbContext _db;
 
-        public WishlistRepository(AppDbContext db) : base(db)
+        public WishlistItemRepository(AppDbContext db) : base(db)
         {
             _db = db;
         }

@@ -11,6 +11,7 @@ namespace AmazonClone.Infrastructure.Repositories.Interfaces
         public ICategoryRepository Category{ get; set; }
         public IProductRepository Product { get; set; }
         public IWishlistRepository Wishlist { get; set; }
+        public ICartItemRepository Cart { get; set; }
 
 
         void Save();

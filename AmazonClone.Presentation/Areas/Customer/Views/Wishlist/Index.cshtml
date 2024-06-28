@@ -32,7 +32,9 @@
     }
     else
     {
-        <partial name="_ProductsList" model="Model.Products" />
+        <div id="page_effect" style="display:none;">
+            <partial name="_ProductsList" model="Model.Products" />
+        </div>
     }
 
 
@@ -41,5 +43,7 @@
 
 
 @section Scripts {
-    <script src="~/js/customer-wishlist.js"></script>
+    <script src="~/js/customer-remove-product-from-wishlist.js"></script>
+    <script src="~/js/section-fadein.js"></script>
+
 }

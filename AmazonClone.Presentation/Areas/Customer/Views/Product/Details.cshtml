@@ -39,14 +39,14 @@
                     <hr class="text-muted" />
 
                     <div class="btn-group shadow-sm">
-                        <a href="#" class="btn btn-warning px-3 py-2 fw-bold text-white grow-xsm">
+                        <a id="buy-button" data-productid="@Model.Id"  ref="#" class="btn btn-warning px-3 py-2 fw-bold text-white grow-xsm">
                             Buy Now
                         </a>
                         <a id="wishlist-button" data-productid="@Model.Id" class="btn btn-danger px-3 py-2 fw-bold text-white grow-xsm">
                             <i class="bi bi-heart"></i>
                             Add to wishlist
                         </a>
-                        <a href="#" class="btn btn-dark px-3 py-2 fw-bold text-white grow-xsm">
+                        <a id="cart-button" data-productid="@Model.Id" class="btn btn-dark px-3 py-2 fw-bold text-white grow-xsm">
                             <i class="bi bi-cart-plus"></i>
                             Add to cart
                         </a>
@@ -60,6 +60,10 @@
 
 @section Scripts {
     @{
-        <script src="~/js/customer-product-details.js"></script>
+        <script src="~/js/customer-add-product-to-wishlist.js" asp-append-version="true"></script>
+        <script src="~/js/customer-add-product-to-cart.js" asp-append-version="true"></script>
+        <script src="~/js/customer-buy.js" asp-append-version="true"></script>
+
+
     }
 }

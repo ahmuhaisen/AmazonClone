@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AmazonClone.Domain.Entities
 {
@@ -20,5 +21,10 @@ namespace AmazonClone.Domain.Entities
 
         public IEnumerable<WishlistItem> Wishlist { get; set; }
         public IEnumerable<CartItem> Cart { get; set; }
+
+        [ValidateNever]
+        [NotMapped]
+        public double ActualPrice =>
+            Math.Round(Price - Price * (DiscountPercentage / 100), 2);
     }
 }

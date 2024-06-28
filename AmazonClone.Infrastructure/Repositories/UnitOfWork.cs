@@ -11,13 +11,15 @@ namespace AmazonClone.Infrastructure.Repositories
         public ICategoryRepository Category { get; set; }
         public IProductRepository Product { get; set; }
         public IWishlistRepository Wishlist { get; set; }
+        public ICartItemRepository Cart { get; set; }
 
         public UnitOfWork(AppDbContext db)
         {
             _db = db;
             Category = new CategoryRepository(_db);
             Product = new ProductRepository(_db);
-            Wishlist = new WishlistRepository(_db);
+            Wishlist = new WishlistItemRepository(_db);
+            Cart = new CartItemRepository(_db);
         }
 
         public void Save()

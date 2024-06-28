@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CustomerCartItemViewModel>
+
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+
+<div class="text-center my-5">
+    <h2 class="h2 fw-bolder">Your Cart</h2>
+</div>
+<div id="page_effect" style="display:none;">
+    @if (Model.Count() == 0)
+    {
+        <div class="d-flex justify-content-center">
+            <img src="~/images/empty-cart.png" class="img-fluid" style="max-width:350px" />
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-6 col-sm-12 d-flex justify-content-end ">
+                <div class="w-75">
+                    @foreach (var cartItem in Model)
+                    {
+                        <div class="card cart-item-card rounded-3 border-0 bg-white shadow-sm w-100 mb-3 p-2">
+                            <div class="row h-100">
+                                <div class="col-3 d-flex align-items-center">
+                                    <a asp-controller="Product" asp-action="Details" asp-route-id="@(cartItem.ProductId)">
+                                        <img src="@(cartItem.ImageUrl)" class="cart-item-image" />
+                                    </a>
+                                </div>
+                                <div class="col-9 ps-0 my-3 pe-4">
+                                    <div>
+                                        <p>@(cartItem.ProductName)</p>
+                                        <p class="fw-bold">@(cartItem.ActualPrice.ToString("C"))</p>
+                                        @* <p class="text-muted ">Size: Not choosen</p> *@
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <input type="number" class="form-control w-25" min="1" max="100" name="name" value="@(cartItem.Quantity)" />
+                                        <a data-productid="@cartItem.ProductId" class="delete-button mt-2 fs-6 text-decoration-none text-danger grow-sm">
+                                            <i class="bi bi-trash"></i>
+                                            <span>Delete</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                Payment
+            </div>
+        </div>
+    }
+
+</div>
+
+
+
+
+@section Scripts {
+    <script src="~/js/customer-remove-product-from-cart.js" asp-append-version="true"></script>
+    <script src="~/js/section-fadein.js" asp-append-version="true"></script>
+
+}
+

@@ -31,6 +31,9 @@ namespace AmazonClone.Infrastructure.Data.Configuration
             builder.Property(x => x.DiscountPercentage)
                 .IsRequired();
 
+            builder.Ignore(x => x.ActualPrice);
+               
+
             builder.HasData(SeedData.LoadProducts());
 
 
