@@ -1,5 +1,4 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
     console.log("Document is ready.");
 
     $(document).on('click', '.delete-button', function (e) {
@@ -17,18 +16,23 @@ $(document).ready(function () {
             success: function (response) {
                 console.log("AJAX call successful. Response:", response);
                 if (response.success) {
-                    Swal.fire({
-                        title: "Removed!",
-                        text: response.message,
-                        icon: "success"
-                    });
 
-                    // Remove the parent .product-home-list-item
+                    //Swal.fire({
+                    //    title: "Removed!",
+                    //    text: response.message,
+                    //    icon: "success"
+                    //});
+
+                    
                     $button.closest('.cart-item-card').fadeOut(250, function () {
                         $(this).remove();
+
+                        // Check if there are any .cart-item-card elements left
+                        if ($('.cart-items .cart-item-card').length === 0) {
+                            // Reload the page if no items are left
+                            location.reload();
+                        }
                     });
-
-
                 } else {
                     Swal.fire({
                         title: "Error!",
@@ -48,5 +52,3 @@ $(document).ready(function () {
         });
     });
 });
-
-

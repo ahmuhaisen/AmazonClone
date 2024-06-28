@@ -23,5 +23,10 @@ namespace AmazonClone.Infrastructure.Repositories
                 .ToList();
                 
         }
+
+        public void Update(CartItem cartItem)
+        {
+            _db.CartItems.Update(cartItem);
+        }
     }
 }

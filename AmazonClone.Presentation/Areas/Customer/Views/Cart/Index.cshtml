@@ -19,14 +19,14 @@
     else
     {
         <div class="row">
-            <div class="col-md-6 col-sm-12 d-flex justify-content-end ">
+            <div class="col-md-6 col-sm-12 d-flex justify-content-end cart-items">
                 <div class="w-75">
                     @foreach (var cartItem in Model)
                     {
                         <div class="card cart-item-card rounded-3 border-0 bg-white shadow-sm w-100 mb-3 p-2">
                             <div class="row h-100">
                                 <div class="col-3 d-flex align-items-center">
-                                    <a asp-controller="Product" asp-action="Details" asp-route-id="@(cartItem.ProductId)">
+                                    <a asp-controller="Product" asp-action="Details" asp-route-id="@(cartItem.ProductId)" class="grow-sm">
                                         <img src="@(cartItem.ImageUrl)" class="cart-item-image" />
                                     </a>
                                 </div>
@@ -37,7 +37,7 @@
                                         @* <p class="text-muted ">Size: Not choosen</p> *@
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <input type="number" class="form-control w-25" min="1" max="100" name="name" value="@(cartItem.Quantity)" />
+                                        <input type="number" data-productid="@cartItem.ProductId" class="quantity-input form-control w-25" min="1" max="100" name="name" value="@(cartItem.Quantity)" inputmode="numeric" />
                                         <a data-productid="@cartItem.ProductId" class="delete-button mt-2 fs-6 text-decoration-none text-danger grow-sm">
                                             <i class="bi bi-trash"></i>
                                             <span>Delete</span>
@@ -49,6 +49,7 @@
                     }
                 </div>
             </div>
+
             <div class="col-md-6 col-sm-12">
                 Payment
             </div>
@@ -62,7 +63,7 @@
 
 @section Scripts {
     <script src="~/js/customer-remove-product-from-cart.js" asp-append-version="true"></script>
+    <script src="~/js/customer-update-product-quantity.js" asp-append-version="true"></script>
     <script src="~/js/section-fadein.js" asp-append-version="true"></script>
-
 }
 

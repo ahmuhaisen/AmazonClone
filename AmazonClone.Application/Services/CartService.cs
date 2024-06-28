@@ -55,7 +55,8 @@ namespace AmazonClone.Application.Services
 
         public void Update(CartItem item)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Cart.Update(item);
+            _unitOfWork.Save();
         }
 
         
