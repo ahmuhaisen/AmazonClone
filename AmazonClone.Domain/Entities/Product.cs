@@ -11,11 +11,14 @@ namespace AmazonClone.Domain.Entities
         public double Price { get; set; }
         public double DiscountPercentage { get; set; }
 
-        public int CategoryId { get; set; }
 
+        public int CategoryId { get; set; }
         [ValidateNever]
         public Category Category { get; set; }
 
+
+
         public IEnumerable<WishlistItem> Wishlist { get; set; }
+        public IEnumerable<CartItem> Cart { get; set; }
     }
 }
