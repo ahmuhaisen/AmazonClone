@@ -26,23 +26,16 @@
 
         public IActionResult Upsert(int? id)
         {
-            if (id is null || id == 0)
-            {
-                // Create
-                return View(new CategoryDto(0, "", "", false));
+            // Create
+            if (id is null or 0)
+                return View(new CategoryDto());
 
-            }
-            else
-            {
-                //Update
-
-                var dbCategory = _categoryService.Get(x => x.Id == id);
-
-                var categoryDto = _mapper.Map<CategoryDto>(dbCategory);
-
-                return View(categoryDto);
-            }
+            //Update
+            var dbCategory = _categoryService.Get(x => x.Id == id);
+            var categoryDto = _mapper.Map<CategoryDto>(dbCategory);
+            return View(categoryDto);
         }
+
 
 
         [HttpPost]
@@ -50,7 +43,7 @@
         {
             var category = _mapper.Map<Category>(categoryDto);
 
-            if(category.Id == 0)
+            if (category.Id == 0)
             {
                 _categoryService.Create(category);
                 TempData["success"] = "Category created successfully";
@@ -65,3 +58,4 @@
         }
     }
 }
+

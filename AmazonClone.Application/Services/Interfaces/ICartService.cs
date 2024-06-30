@@ -1,4 +1,5 @@
 ﻿using AmazonClone.Domain.Entities;
+using AmazonClone.Domain.ViewModels.Customer;
 using System.Linq.Expressions;
 
 namespace AmazonClone.Application.Services.Interfaces
@@ -11,6 +12,7 @@ namespace AmazonClone.Application.Services.Interfaces
         IEnumerable<CartItem> GetAll();
         CartItem Get(Expression<Func<CartItem, bool>> filter);
         public IEnumerable<CartItem> GetCustomerCartItems(string userId);
+        public IEnumerable<CustomerCartItemViewModel> GetCustomerCartItemsAsModel(IEnumerable<CartItem> items);
 
 
         void Update(CartItem item);

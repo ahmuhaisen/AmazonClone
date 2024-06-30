@@ -7,6 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="Areas\Customer\Views\Cart\_CheckoutSection.cshtml" />
 	  <Content Remove="Areas\Customer\Views\Shared\_Notifications.cshtml" />
 	  <Content Remove="Areas\Master\Views\Shared\_Notifications.cshtml" />
 	</ItemGroup>
@@ -37,6 +38,7 @@
 
 	<ItemGroup>
 		<None Include="Areas\Admin\Views\Shared\_Notifications.cshtml" />
+		<None Include="Areas\Customer\Views\Shared\_CheckoutSection.cshtml" />
 		<None Include="Areas\Customer\Views\Shared\_Notifications.cshtml" />
 		<None Include="Areas\Master\Views\Shared\_Notifications.cshtml" />
 		<None Include="Views\Shared\Error.cshtml" />
@@ -46,6 +48,14 @@
 		<None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
 		<None Include="Views\_ViewImports.cshtml" />
 		<None Include="Views\_ViewStart.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <UpToDateCheckInput Remove="Areas\Customer\Views\Cart\_CheckoutSection.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <_ContentIncludedByDefault Remove="Areas\Customer\Views\Cart\_CheckoutSection.cshtml" />
 	</ItemGroup>
 
 </Project>

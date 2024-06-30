@@ -29,6 +29,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IWishlistService, WishlistService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<ICheckoutService, CheckoutService>();
 
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 

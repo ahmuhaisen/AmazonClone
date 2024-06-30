@@ -1,4 +1,7 @@
-﻿namespace AmazonClone.Presentation.Areas.Customer.Controllers
+﻿using AmazonClone.Application;
+using AmazonClone.Domain.Entities;
+
+namespace AmazonClone.Presentation.Areas.Customer.Controllers
 {
 
 
@@ -6,11 +9,13 @@
     public class CartController : Controller
     {
         private readonly ICartService _cartService;
+        private readonly ICheckoutService _checkoutService;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public CartController(ICartService cartService, UserManager<ApplicationUser> userManager)
+        public CartController(ICartService cartService, ICheckoutService checkoutService, UserManager<ApplicationUser> userManager)
         {
             _cartService = cartService;
+            _checkoutService = checkoutService;
             _userManager = userManager;
         }
 
@@ -22,20 +27,19 @@
 
             var userCartItems = _cartService.GetCustomerCartItems(user.Id);
 
+            if (!userCartItems.Any())
+                return View(new CustomerCartViewModel());
 
-            //ViewModel!!
-            IEnumerable<CustomerCartItemViewModel> model = userCartItems.Select(x =>
-            new CustomerCartItemViewModel
+            var checkoutData = _checkoutService.CalculateCheckout(userCartItems);
+
+
+            CustomerCartViewModel model = new()
             {
-                Id = x.Id,
-                ProductId = x.ProductId,
-                ProductName = x.Product.Name.Length >= 30 ? $"{x.Product.Name.Substring(0, 30)}.." : x.Product.Name,
-                ActualPrice = x.Product.ActualPrice,
-                ImageUrl = x.Product.ImageUrl,
-                Quantity = x.Quantity
-            });
+                CartItems = _cartService.GetCustomerCartItemsAsModel(userCartItems),
+                CheckoutSection = _checkoutService.GetCheckoutSection(checkoutData)
+            };
 
-
+            
             return View(model);
         }
 
@@ -90,6 +94,27 @@
             _cartService.Update(itemToUpdate);
 
             return Json(new { success = true, message = "Product's quantity updated successfully" });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetUpdatedCheckoutSection()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            var userCartItems = _cartService.GetCustomerCartItems(user.Id);
+
+            if (!userCartItems.Any())
+                return PartialView("_EmptyCartMessage");
+
+            var checkoutData = _checkoutService.CalculateCheckout(userCartItems);
+
+            CustomerCartViewModel model = new()
+            {
+                CartItems = _cartService.GetCustomerCartItemsAsModel(userCartItems),
+                CheckoutSection = _checkoutService.GetCheckoutSection(checkoutData)
+            };
+
+            return PartialView("_CheckoutSection", model.CheckoutSection);
         }
         #endregion
     }
