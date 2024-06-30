@@ -21,6 +21,8 @@ namespace AmazonClone.Domain.Entities
 
         public IEnumerable<WishlistItem> Wishlist { get; set; }
         public IEnumerable<CartItem> Cart { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
+
 
         [ValidateNever]
         [NotMapped]

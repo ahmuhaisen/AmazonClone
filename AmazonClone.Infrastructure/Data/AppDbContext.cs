@@ -13,12 +13,14 @@ namespace AmazonClone.Infrastructure.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<WishlistItem> Wishlist { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Shipment> Shipments { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        {
-
-        }
+        {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

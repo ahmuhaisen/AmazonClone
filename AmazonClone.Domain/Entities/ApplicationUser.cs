@@ -25,6 +25,8 @@ namespace AmazonClone.Domain.Entities
 
         public ICollection<WishlistItem> Wishlist { get; set; }
         public ICollection<CartItem> Cart { get; set; }
+        public ICollection<Order> Orders { get; set; }
+
 
     }
 }
