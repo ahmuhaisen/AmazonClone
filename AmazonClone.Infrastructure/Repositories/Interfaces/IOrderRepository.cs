@@ -1,13 +1,11 @@
 ﻿using AmazonClone.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace AmazonClone.Infrastructure.Repositories.Interfaces
 {
     public interface IOrderRepository : IGenericRepository<Order>
     {
+        IEnumerable<Order> GetAllBy(Expression<Func<Order, bool>> filter);
+
     }
 }

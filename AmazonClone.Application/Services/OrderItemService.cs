@@ -1,6 +1,7 @@
 ﻿using AmazonClone.Application.Services.Interfaces;
 using AmazonClone.Domain.Entities;
 using AmazonClone.Infrastructure.Repositories.Interfaces;
+using System.Linq.Expressions;
 
 namespace AmazonClone.Application.Services
 {
@@ -17,6 +18,11 @@ namespace AmazonClone.Application.Services
         {
             _unitOfWork.OrderItem.AddRange(orderItems);
             _unitOfWork.Save();
+        }
+
+        public IEnumerable<OrderItem> GetAllBy(Expression<Func<OrderItem, bool>> filter)
+        {
+            return _unitOfWork.OrderItem.GetAllBy(filter);
         }
     }
 }

@@ -1,0 +1,43 @@
+﻿@model CustomerOrderDetailsViewModel
+
+
+
+<h2 class="h2 fw-bolder">Order Details</h2>
+
+<div class="row mt-4">
+    <div class="col-lg-3">
+        <div class="card bg-white border-secondary text-dark shadow-sm w-100 p-3">
+            <p class="mb-0">
+                <strong>Order No:</strong>
+                @(Model.CurrentOrder.Id)
+            </p>
+            <hr class="my-1" />
+            <p class="my-1">
+                <strong>Created At:</strong>
+                @(Model.CurrentOrder.CreatedAt)
+            </p>
+            <hr class="my-1" />
+            <p class="mb-0">
+                <strong>Total Price:</strong>
+                @(Model.CurrentOrder.TotalPrice.ToString("C"))
+            </p>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        @foreach (var item in Model.OrderItems)
+        {
+            <div class="bg-white shadow-sm p-3 rounded-3 w-75 mb-4 ">
+                <div class=" d-flex justify-content-start align-items-center">
+                    <div class="">
+                        <img src="@item.ImageUrl" class="cart-item-image" />
+                    </div>
+                    <div class="ms-3">
+                        <div class="my-1">@item.Name</div>
+                        <span class="badge bg-primary me-1">Quantity: @item.Quantity PC(s)</span>
+                        <span class="badge bg-success">Price: @item.Price.ToString("C")</span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

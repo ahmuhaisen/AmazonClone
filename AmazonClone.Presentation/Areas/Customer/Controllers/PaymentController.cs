@@ -50,13 +50,13 @@ namespace AmazonClone.Presentation.Areas.Customer.Controllers
 
             _paymentService.Create(paymentToAdd);
 
-            if (paymentToAdd.Id != 0)
-                TempData["success"] = "Payment created";
-
+           
             var user = await _userManager.GetUserAsync(User);
 
 
-            _orderService.MakeOrder(model.ShipmentId, paymentToAdd.Id, user.Id);
+            _orderService.PlaceOrder(model.ShipmentId, paymentToAdd.Id, user.Id);
+
+            TempData["OrderSuccessMessage"] = "Your order has been placed successfully!";
 
             return RedirectToAction("Index", "Order");
         }

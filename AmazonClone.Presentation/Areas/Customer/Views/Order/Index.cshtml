@@ -1,3 +1,26 @@
-﻿
+﻿@model IEnumerable<CustomerOrderViewModel>
 
-<h1>Customer Orders</h1>
+
+
+<h2 class="h2 fw-bolder text-center">Your Orders</h2>
+
+
+<div class="d-flex justify-content-center mt-5">
+    <div class="row">
+        @foreach (var order in Model)
+        {
+            <div class="row bg-white shadow-sm p-3 rounded-3 w-100 mb-4">
+                <div class="col-8">
+                    <small class="text-muted">@(order.CreatedAt.ToString())</small>
+                    <p class="fw-bold fs-5">Order No: @(order.Id.ToString())</p>
+                    <span class="">Total Price: @(order.TotalPrice.ToString("C"))</span>
+                </div>
+                <div class="col-4 d-flex justify-content-end align-items-center">
+                    <div>
+                        <a asp-controller="OrderItem" asp-action="Index" asp-route-orderId="@order.Id" class="btn btn-warning grow-xsm">Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

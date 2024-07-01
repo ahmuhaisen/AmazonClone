@@ -2,6 +2,8 @@
 using AmazonClone.Domain.Entities;
 using AmazonClone.Infrastructure.Data;
 using AmazonClone.Infrastructure.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace AmazonClone.Infrastructure.Repositories
 {
@@ -18,6 +20,11 @@ namespace AmazonClone.Infrastructure.Repositories
         public void AddRange(IEnumerable<OrderItem> items)
         {
             _db.OrderItems.AddRange(items);
+        }
+
+        public IEnumerable<OrderItem> GetAllBy(Expression<Func<OrderItem, bool>> filter)
+        {
+            return _db.OrderItems.Where(filter).Include(x => x.Product).AsNoTracking();
         }
     }
 }

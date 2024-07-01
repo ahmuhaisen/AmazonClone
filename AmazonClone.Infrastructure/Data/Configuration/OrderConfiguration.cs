@@ -13,7 +13,7 @@ namespace AmazonClone.Infrastructure.Data.Configuration
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id)
-                .ValueGeneratedNever();
+                .UseIdentityColumn();
 
             builder.Property(x => x.CreatedAt)
                  .HasDefaultValueSql("getdate()")

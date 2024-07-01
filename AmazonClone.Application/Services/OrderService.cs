@@ -2,6 +2,7 @@
 using AmazonClone.Domain.Entities;
 using AmazonClone.Infrastructure.Repositories.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using System.Linq.Expressions;
 
 namespace AmazonClone.Application.Services
 {
@@ -28,12 +29,22 @@ namespace AmazonClone.Application.Services
             _unitOfWork.Save();
         }
 
-        public void MakeOrder(int shipmentId, int paymentId, string userId)
+        public Order Get(int Id)
+        {
+            return _unitOfWork.Order.Get(x => x.Id == Id);
+        }
+
+        public IEnumerable<Order> GetAllBy(Expression<Func<Order, bool>> filter)
+        {
+            return _unitOfWork.Order.GetAllBy(filter);
+        }
+
+        public void PlaceOrder(int shipmentId, int paymentId, string userId)
         {
 
             Order order = new()
             {
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
                 PaymentId = paymentId,
                 ShipmentId = shipmentId,
                 UserId = userId,

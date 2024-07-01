@@ -21,6 +21,12 @@ namespace AmazonClone.Presentation.DTOs
             CreateMap<CustomerShipmentFormViewModel, Shipment>()
                 .ReverseMap();
 
+            CreateMap<CustomerOrderViewModel, Order>()
+               .ReverseMap();
+
+            CreateMap<CustomerOrderItemViewModel, OrderItem>()
+               .ReverseMap();
+
         }
     }
 }
