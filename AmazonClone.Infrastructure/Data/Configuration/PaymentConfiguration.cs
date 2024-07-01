@@ -21,6 +21,9 @@ namespace AmazonClone.Infrastructure.Data.Configuration
 
             builder.Property(x => x.Amount)
                 .IsRequired();
+
+            builder.Ignore(x => x.OrderId);
+
         }
     }
 }

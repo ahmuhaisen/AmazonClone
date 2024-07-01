@@ -9,5 +9,7 @@ namespace AmazonClone.Application.Services.Interfaces
         public CustomerCartCheckoutViewModel GetCheckoutSection(Checkout checkoutData);
 
 
+        double GetCartTotalAmount();
+
     }
 }

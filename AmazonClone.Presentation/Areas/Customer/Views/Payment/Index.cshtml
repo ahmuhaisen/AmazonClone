@@ -1,0 +1,46 @@
+﻿@model CustomerPaymentFormViewModel
+
+
+@{
+    ViewBag.Title = "Payment method";
+}
+
+<div id="page_effect" style="display:none;">
+
+    <div class="d-flex justify-content-center">
+        <div class="w-50 bg-white shadow-sm p-4">
+            <div>
+                <h4 class="h4 fw-bolder">Choose your payment method</h4>
+                <small>Total Amount: @(Model.TotalAmount.ToString("C"))</small>
+            </div>
+
+            <form method="post" asp-action="Create" class="mt-4">
+
+                <input asp-for="ShipmentId" hidden />
+                <input asp-for="TotalAmount" hidden />
+
+                <div class="form-group mb-3">
+                    <label asp-for="SelectedPaymentMethod" class="mb-2"></label>
+                    <select asp-for="SelectedPaymentMethod" class="form-select form-control">
+                        <option value="COD" class="option">Cash on delivery (COD)</option>
+                        <option value="CARD">Credit/Debit card</option>
+                        <option value="PAYPAL">PayPal</option>
+                    </select>
+                    <span asp-validation-for="SelectedPaymentMethod" class="text-danger"></span>
+
+
+
+                    <div class="w-25 grow-xsm d-block">
+                        <button type="submit" class="btn btn-warning form-control mt-5">Place Order</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/section-fadein.js" asp-append-version="true"></script>
+
+}

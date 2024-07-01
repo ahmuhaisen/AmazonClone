@@ -11,6 +11,10 @@ namespace AmazonClone.Application.Services
             return Checkout.Instance.CalculateCheckout(userCartItems, discountPercentage);
         }
 
+        public double GetCartTotalAmount()
+        {
+            return Checkout.Instance.Total;
+        }
 
         public CustomerCartCheckoutViewModel GetCheckoutSection(Checkout checkoutData)
         {

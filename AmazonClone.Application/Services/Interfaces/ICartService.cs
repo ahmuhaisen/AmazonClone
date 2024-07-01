@@ -19,9 +19,12 @@ namespace AmazonClone.Application.Services.Interfaces
 
 
         void Remove(CartItem item);
+        void RemoveRange(IEnumerable<CartItem> items);
 
 
 
         bool IsProductInCustomerCart(string userId, int productId);
+
+
     }
 }

@@ -46,7 +46,11 @@ namespace AmazonClone.Application.Services
         {
             _unitOfWork.Cart.Remove(item);
             _unitOfWork.Save();
-
+        }
+        public void RemoveRange(IEnumerable<CartItem> items)
+        {
+            _unitOfWork.Cart.RemoveRange(items);
+            _unitOfWork.Save();
         }
 
 
@@ -76,6 +80,11 @@ namespace AmazonClone.Application.Services
                     ImageUrl = x.Product.ImageUrl,
                     Quantity = x.Quantity
                 });
+        }
+
+        public double GetCartTotalAmount()
+        {
+            throw new NotImplementedException();
         }
     }
 }

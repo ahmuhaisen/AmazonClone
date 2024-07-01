@@ -13,7 +13,7 @@
         @foreach (var category in Model.PopularCategories)
         {
             <a asp-action="Index" asp-route-categoryID="@(category.Id)" class="bg-white fs-2 shadow-sm rounded-3 text-muted mx-2 p-3">
-                <i class="@(category.IconString)" title="@(category.Name)"></i>
+                <i class="@category.IconString" title="@(category.Name)"></i>
             </a>
         }
     </div>

@@ -1,0 +1,73 @@
+﻿@model CustomerShipmentFormViewModel
+
+
+@{
+    ViewBag.Title = "Shipment";
+}
+
+<div id="page_effect" style="display:none;">
+
+    <div class="d-flex justify-content-center">
+        <div class="w-75 bg-white shadow-sm p-4">
+            <div>
+                <h4 class="h4 fw-bolder">Shipping details</h4>
+                <p class="text-muted fs-6">Order Id: @(Model.OrderId)</p>
+            </div>
+
+            <form method="post" asp-action="Create" class="mt-4">
+                <input asp-for="ShipmentId" hidden />
+                <input asp-for="OrderId" hidden />
+
+
+                <div class="row">
+                    <div class="form-floating mb-3 col-lg-6">
+                        <input asp-for="Country" class="form-control" placeholder="Country" />
+                        <label asp-for="Country" class="ms-3"></label>
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3 col-lg-6">
+                        <input asp-for="EmailAddress" class="form-control" placeholder="Email Address" />
+                        <label asp-for="EmailAddress" class="ms-3"></label>
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3 col-lg-6">
+                        <input asp-for="Name" class="form-control" placeholder="Country" />
+                        <label asp-for="Name" class="ms-3"></label>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3 col-lg-6">
+                        <input asp-for="HomeAddress" class="form-control" placeholder="Email Address" />
+                        <label asp-for="HomeAddress" class="ms-3"></label>
+                        <span asp-validation-for="HomeAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3 col-lg-6">
+                        <input asp-for="ContactNumber" class="form-control" placeholder="Country" />
+                        <label asp-for="ContactNumber" class="ms-3"></label>
+                        <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3 col-lg-6">
+                        <input asp-for="PinCode" class="form-control" placeholder="EmailAddress" />
+                        <label asp-for="PinCode" class="ms-3"></label>
+                        <span asp-validation-for="PinCode" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="w-25 grow-xsm">
+                    <button type="submit" class="btn btn-primary form-control mt-3">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/section-fadein.js" asp-append-version="true"></script>
+
+}
