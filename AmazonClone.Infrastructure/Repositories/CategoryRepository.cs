@@ -24,6 +24,8 @@ namespace AmazonClone.Infrastructure.Repositories
             return result;
         }
 
+
+
         public void Update(Category entity)
         {
             _db.Update(entity);

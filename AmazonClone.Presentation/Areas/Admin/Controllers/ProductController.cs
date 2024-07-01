@@ -21,22 +21,6 @@
 
         public IActionResult Index(int? categoryId = null)
         {
-
-            //AdminIndexProductVM indexProductVM = new AdminIndexProductVM();
-
-            //if (categoryId is null or 0)
-            //{
-            //    indexProductVM.Category = null;
-            //    indexProductVM.Products = _productService.GetAll();
-            //}
-            //else
-            //{
-            //    indexProductVM.Category = _categoryService.Get(x => x.Id == categoryId);
-            //    indexProductVM.Products = _productService.GetAllByCategoryId((int)categoryId);
-            //}
-
-            //return View(indexProductVM);
-
             if(categoryId is not null or 0)
                 TempData["SearchDefaultValueForProductsList"] = _categoryService.Get(x => x.Id == categoryId).Name;
 
@@ -48,7 +32,7 @@
             if (id is null or 0)
             {
                 // Create View
-                var upsertProductVM = new AdminUpsertProductVM()
+                var upsertProductVM = new AdminUpsertProductViewModel()
                 {
                     CategoryList = _categoryService.GetCategoriesAsListItems()
                 };
@@ -59,8 +43,8 @@
             {
                 //Update View
                 var productToUpdate = _productService.Get(x => x.Id == id);
-                var upsertProductVM = new AdminUpsertProductVM();
-                upsertProductVM = _mapper.Map<AdminUpsertProductVM>(productToUpdate);
+                var upsertProductVM = new AdminUpsertProductViewModel();
+                upsertProductVM = _mapper.Map<AdminUpsertProductViewModel>(productToUpdate);
 
                 upsertProductVM.CategoryList = _categoryService.GetCategoriesAsListItems();
 
@@ -69,21 +53,16 @@
         }
 
         [HttpPost]
-        public IActionResult Upsert(AdminUpsertProductVM upsertProductVM)
+        public IActionResult Upsert(AdminUpsertProductViewModel upsertProductVM)
         {
-
             if (upsertProductVM.Id == 0 && upsertProductVM.Image is null)
-            {
                 ModelState.AddModelError("Image", "Image field is required");
-            }
+
             if (upsertProductVM.Id != 0 && upsertProductVM.ImageUrl is null)
-            {
                 ModelState.AddModelError("Image", "Image field is required");
-            }
 
             if (ModelState.IsValid)
             {
-
                 var productToUpsert = _mapper.Map<Product>(upsertProductVM);
 
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
@@ -94,13 +73,9 @@
 
 
                 if (upsertProductVM.Id == 0)
-                {
                     _productService.Create(productToUpsert);
-                }
                 else
-                {
                     _productService.Update(productToUpsert);
-                }
 
                 TempData["Success"] = "Product saved successfully";
 
@@ -111,9 +86,6 @@
                 upsertProductVM.CategoryList = _categoryService.GetCategoriesAsListItems();
                 return View(upsertProductVM);
             }
-
-
-
         }
 
         public IActionResult Details(int id)
@@ -125,9 +97,9 @@
 
             if (productToDisplay != null)
             {
-                AdminDetailsProductVM adminDetailsProductVM = new();
-                adminDetailsProductVM = _mapper.Map<AdminDetailsProductVM>(productToDisplay);
-                return View(adminDetailsProductVM);
+                AdminDetailsProductViewModel AdminDetailsProductViewModel = new();
+                AdminDetailsProductViewModel = _mapper.Map<AdminDetailsProductViewModel>(productToDisplay);
+                return View(AdminDetailsProductViewModel);
             }
 
             return RedirectToAction("Index");
@@ -147,9 +119,7 @@
             var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToDelete.ImageUrl.Trim('\\'));
 
             if (System.IO.File.Exists(oldImagePath))
-            {
                 System.IO.File.Delete(oldImagePath);
-            }
 
             _productService.Remove(productToDelete);
 

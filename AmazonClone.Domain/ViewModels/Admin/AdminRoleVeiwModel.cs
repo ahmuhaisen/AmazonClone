@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AmazonClone.Domain.ViewModels.Admin
+﻿namespace AmazonClone.Domain.ViewModels.Admin
 {
     public class AdminRoleVeiwModel
     {

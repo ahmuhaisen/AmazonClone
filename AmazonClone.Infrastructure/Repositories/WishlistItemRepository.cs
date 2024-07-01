@@ -23,6 +23,8 @@ namespace AmazonClone.Infrastructure.Repositories
             return result.ToList();
         }
 
+
+
         public bool IsProductInCustomerWishlist(string userId, int productId)
         {
             return _db.Wishlist.Any(x => x.ProductId == productId && x.UserId == userId);

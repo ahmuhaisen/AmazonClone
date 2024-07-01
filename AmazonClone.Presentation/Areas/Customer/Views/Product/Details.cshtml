@@ -13,22 +13,13 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="ps-2 text-start">
+                <div class="ps-2 text-start h-100 d-flex align-content-between flex-wrap">
+                    <div>
                     <h2 class="fw-bolder">@Model.Name</h2>
                     <p class="my-3 text-muted">
                         @Model.Description
                     </p>
                     <hr class="text-muted" />
-
-                    @if (Model.HasSize)
-                    {
-                        <p class="fw-bolder h3 my-2">Choose a size</p>
-                        <div>
-                            <!-- Size selection logic -->
-                        </div>
-                        <hr class="text-muted" />
-                    }
-
                     <div>
                         <span class="fw-bolder h3">
                             Price: @Model.ActualPrice.ToString("C")
@@ -37,7 +28,7 @@
                     </div>
 
                     <hr class="text-muted" />
-
+                    </div>
                     <div class="btn-group shadow-sm">
                         <a id="buy-button" data-productid="@Model.Id"  ref="#" class="btn btn-warning px-3 py-2 fw-bold text-white grow-xsm">
                             Buy Now

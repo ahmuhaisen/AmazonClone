@@ -1,5 +1,4 @@
-﻿@using AmazonClone.Infrastructure.Utils
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -15,21 +14,32 @@
     <script src="https://kit.fontawesome.com/3aad9a9455.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light text-light bg-dark border-bottom p-3 mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="Master" asp-controller="Home" asp-action="Index">
-                    <img class="" src="~/images/amazon-logo.png" style="width: 120px" />
-                </a>
+                @if (User.IsInRole(RolesConsts.ADMIN_USER))
+                {
+                    <a class="navbar-brand" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                        <img class="" src="~/images/amazon-logo.png" style="width: 120px" />
+                    </a>
+                }
+                else
+                {
+                    <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">
+                        <img class="" src="~/images/amazon-logo.png" style="width: 120px" />
+                    </a>
+                }
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    @if(User.IsInRole(RolesConsts.ADMIN_USER))
+                    @if (User.IsInRole(RolesConsts.ADMIN_USER))
                     {
-                        <partial name="_AdminNavBar"/>
+                        <partial name="_AdminNavBar" />
                     }
                     else if (User.IsInRole(RolesConsts.CUSTOMER_USER))
                     {
@@ -40,15 +50,14 @@
             </div>
             <div class="navbar-collapse">
 
-            <partial name="_LoginPartial" />
+                <partial name="_LoginPartial" />
             </div>
         </nav>
     </header>
 
 
     <div class="container my-5" style="min-height: 500px">
-
-         <partial name="_Notifications" /> 
+        <partial name="_Notifications" />
 
         <main role="main">
             @RenderBody()
@@ -109,12 +118,13 @@
     </footer>
 
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"> </script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
     <script>
         $(document).ready(function () {
             var orderSuccessMessage = '@TempData["OrderSuccessMessage"]';
@@ -128,6 +138,7 @@
             }
         });
     </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

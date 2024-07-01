@@ -1,5 +1,4 @@
-﻿using System;
-namespace AmazonClone.Domain.ViewModels.Customer
+﻿namespace AmazonClone.Domain.ViewModels.Customer
 {
     public class CustomerCartCheckoutViewModel
     {

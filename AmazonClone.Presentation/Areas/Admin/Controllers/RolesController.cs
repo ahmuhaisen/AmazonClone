@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace AmazonClone.Presentation.Areas.Admin.Controllers
+﻿namespace AmazonClone.Presentation.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = RolesConsts.ADMIN_USER)]
@@ -27,7 +25,6 @@ namespace AmazonClone.Presentation.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(AdminRoleFormViewModel model)
         {
-            // try remove it await'
             if (!ModelState.IsValid)
                 return View("Index", await _roleManager.Roles.ToListAsync());
 

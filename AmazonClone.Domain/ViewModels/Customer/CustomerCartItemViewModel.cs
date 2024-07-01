@@ -1,11 +1,4 @@
-﻿using AmazonClone.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AmazonClone.Domain.ViewModels.Customer
+﻿namespace AmazonClone.Domain.ViewModels.Customer
 {
     public class CustomerCartItemViewModel
     {

@@ -3,8 +3,6 @@ using AmazonClone.Domain.Entities;
 using AmazonClone.Domain.ViewModels.Customer;
 using AmazonClone.Infrastructure.Repositories.Interfaces;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AmazonClone.Application.Services
 {
@@ -39,7 +37,20 @@ namespace AmazonClone.Application.Services
         {
             return _unitOfWork.Cart.GetCustomerCartItems(userId);
         }
-
+        public IEnumerable<CustomerCartItemViewModel> GetCustomerCartItemsAsModel(IEnumerable<CartItem> items)
+        {
+            return items.Select(x =>
+                new CustomerCartItemViewModel
+                {
+                    Id = x.Id,
+                    ProductId = x.ProductId,
+                    ProductName = x.Product.Name.Length >= 30 ? $"{x.Product.Name.Substring(0, 30)}.." : x.Product.Name,
+                    ActualPrice = x.Product.ActualPrice,
+                    ImageUrl = x.Product.ImageUrl,
+                    Quantity = x.Quantity
+                });
+        }
+     
 
 
         public void Remove(CartItem item)
@@ -66,25 +77,6 @@ namespace AmazonClone.Application.Services
         public bool IsProductInCustomerCart(string userId, int productId)
         {
             return Get(x => x.UserId == userId && x.ProductId == productId) is not null;
-        }
-
-        public IEnumerable<CustomerCartItemViewModel> GetCustomerCartItemsAsModel(IEnumerable<CartItem> items)
-        {
-            return items.Select(x =>
-                new CustomerCartItemViewModel
-                {
-                    Id = x.Id,
-                    ProductId = x.ProductId,
-                    ProductName = x.Product.Name.Length >= 30 ? $"{x.Product.Name.Substring(0, 30)}.." : x.Product.Name,
-                    ActualPrice = x.Product.ActualPrice,
-                    ImageUrl = x.Product.ImageUrl,
-                    Quantity = x.Quantity
-                });
-        }
-
-        public double GetCartTotalAmount()
-        {
-            throw new NotImplementedException();
         }
     }
 }

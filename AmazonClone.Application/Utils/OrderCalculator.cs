@@ -1,6 +1,6 @@
 ﻿using AmazonClone.Domain.Entities;
 
-namespace AmazonClone.Application
+namespace AmazonClone.Application.Utils
 {
     public class OrderCalculator
     {
@@ -10,7 +10,7 @@ namespace AmazonClone.Application
         public OrderCalculator(IEnumerable<CartItem> cartItems, double? discountPercentage = null)
         {
             subTotal = CalculateSubTotal(cartItems);
-            if (discountPercentage is null) 
+            if (discountPercentage is null)
                 this.discountPercentage = discountPercentage;
         }
 
@@ -19,7 +19,7 @@ namespace AmazonClone.Application
             double subTotal = 0;
             foreach (var item in cartItems)
             {
-                subTotal += (item.Product.ActualPrice * item.Quantity);
+                subTotal += item.Product.ActualPrice * item.Quantity;
             }
             return subTotal;
         }

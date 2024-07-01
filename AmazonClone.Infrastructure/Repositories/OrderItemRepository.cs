@@ -22,6 +22,8 @@ namespace AmazonClone.Infrastructure.Repositories
             _db.OrderItems.AddRange(items);
         }
 
+
+
         public IEnumerable<OrderItem> GetAllBy(Expression<Func<OrderItem, bool>> filter)
         {
             return _db.OrderItems.Where(filter).Include(x => x.Product).AsNoTracking();

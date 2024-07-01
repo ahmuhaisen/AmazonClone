@@ -29,6 +29,8 @@ namespace AmazonClone.Application.Services
             _unitOfWork.Save();
         }
 
+
+
         public Order Get(int Id)
         {
             return _unitOfWork.Order.Get(x => x.Id == Id);
@@ -48,6 +50,8 @@ namespace AmazonClone.Application.Services
         {
             return _unitOfWork.Order.GetSalesVolume();
         }
+
+
 
         public void PlaceOrder(int shipmentId, int paymentId, string userId)
         {

@@ -1,10 +1,6 @@
 ﻿using AmazonClone.Application.Services.Interfaces;
 using AmazonClone.Domain.Entities;
-using AmazonClone.Domain.ViewModels.Customer;
 using AmazonClone.Infrastructure.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 
 

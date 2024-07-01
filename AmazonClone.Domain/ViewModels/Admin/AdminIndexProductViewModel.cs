@@ -3,11 +3,10 @@
 
 namespace AmazonClone.Domain.ViewModels.Admin
 {
-    public class AdminIndexProductVM
+    public class AdminIndexProductViewModel
     {
         public Category? Category { get; set; }
 
-        // May be IEnumerable<ProductDto> in future
         public IEnumerable<Product> Products { get; set; }
     }
 }

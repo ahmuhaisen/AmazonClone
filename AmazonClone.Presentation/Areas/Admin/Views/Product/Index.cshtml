@@ -1,6 +1,4 @@
-﻿@* @model AdminIndexProductVM *@
-
-@{
+﻿@{
     ViewBag.Title = $"Products";
 }
 
@@ -10,14 +8,6 @@
 
     <div class="col-6">
         <h1>Products List</h1>
-        @* @if (Model.Category is null)
-        {
-            <h1>Products List</h1>
-        }
-        else
-        {
-             <h1><span class="badge bg-warning rounded-3"> <i class="@Model.Category.IconString me-2"></i> @Model.Category.Name</span> Products</h1>
-        }*@
     </div>
 
     <div class="col-3 text-end">
@@ -32,20 +22,12 @@
 <partial name="IndexDataTable" />
 
 
-@* @if (@Model.Products.Count() != 0)
-{
-    <partial name="IndexDataTable" />
-}
-else
-{
-     <partial name="_AdminNoItemsPartial" />
-}*@
 
 
 @section Scripts
 {
-    <script src="~/lib/datatables/js/jquery.datatables.js"></script>
-    <script src="~/lib/datatables/js/datatables.bootstrap4.js"></script>
-    <script src="~/js/adminproductsdatatable.js"></script>
-    <script src="~/js/admin-delete-product.js"></script>
+    <script src="~/lib/datatables/js/jquery.datatables.js" asp-append-version="true"></script>
+    <script src="~/lib/datatables/js/datatables.bootstrap4.js" asp-append-version="true"></script>
+    <script src="~/js/admin-products-datatable.js" asp-append-version="true"></script>
+    <script src="~/js/admin-delete-product.js" asp-append-version="true"></script>
 }

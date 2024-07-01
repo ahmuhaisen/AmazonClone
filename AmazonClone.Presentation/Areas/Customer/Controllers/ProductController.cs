@@ -1,34 +1,32 @@
-﻿namespace AmazonClone.Presentation.Areas.Customer.Controllers
+﻿namespace AmazonClone.Presentation.Areas.Customer.Controllers;
+
+[Area("Customer")]
+[Authorize(Roles = RolesConsts.CUSTOMER_USER)]
+public class ProductController : Controller
 {
-    [Area("Customer")]
-    [Authorize(Roles = RolesConsts.CUSTOMER_USER)]
-    public class ProductController : Controller
+    private readonly IProductService _productService;
+    private readonly IMapper _mapper;
+
+    public ProductController(IProductService productService, IMapper mapper)
     {
-        private readonly IProductService _productService;
-        private readonly IMapper _mapper;
+        _productService = productService;
+        _mapper = mapper;
+    }
 
-        public ProductController(IProductService productService, IMapper mapper)
+
+    public IActionResult Details(int id)
+    {
+        if (id == 0)
+            return NotFound();
+
+        var productToDisplay = _productService.Get(x => x.Id == id);
+
+        if (productToDisplay is not null)
         {
-            _productService = productService;
-            _mapper = mapper;
+            var model = _mapper.Map<CustomerDetailsProductViewModel>(productToDisplay);
+            return View(model);
         }
 
-
-        public IActionResult Details(int id)
-        {
-            if (id == 0)
-                return NotFound();
-
-            var productToDisplay = _productService.Get(x => x.Id == id);
-
-            if (productToDisplay is not null)
-            {
-                CustomerDetailsProductViewModel model = _mapper.Map<CustomerDetailsProductViewModel>(productToDisplay);
-                //model.HasSize = productToDisplay.Category.HasSize;
-                return View(model);
-            }
-
-            return RedirectToAction(nameof(HomeController.Index));
-        }
+        return RedirectToAction(nameof(HomeController.Index));
     }
 }

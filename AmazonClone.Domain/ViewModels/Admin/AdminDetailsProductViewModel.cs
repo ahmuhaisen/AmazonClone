@@ -1,10 +1,9 @@
 ﻿using AmazonClone.Domain.Entities;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 
 namespace AmazonClone.Domain.ViewModels.Admin
 {
-    public class AdminDetailsProductVM
+    public class AdminDetailsProductViewModel
     {
         public int Id { get; set; }
         public string? Name { get; set; }

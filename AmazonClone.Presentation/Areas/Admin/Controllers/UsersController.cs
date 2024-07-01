@@ -4,7 +4,6 @@
     [Authorize(Roles = RolesConsts.ADMIN_USER)]
     public class UsersController : Controller
     {
-
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
@@ -30,7 +29,6 @@
 
             return View(users);
         }
-
 
 
         public async Task<IActionResult> ManageRoles(string userId)

@@ -20,6 +20,8 @@ namespace AmazonClone.Infrastructure.Repositories
             return _db.Products.Count();
         }
 
+
+
         public new IEnumerable<Product> GetAll()
         {
             var query = _db.Products
@@ -39,6 +41,8 @@ namespace AmazonClone.Infrastructure.Repositories
 
             return query.ToList();
         }
+
+
 
         public void Update(Product product)
         {

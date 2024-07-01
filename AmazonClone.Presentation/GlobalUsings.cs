@@ -10,7 +10,6 @@ global using AmazonClone.Domain.ViewModels.Customer;
 global using AmazonClone.Infrastructure.Data;
 global using AmazonClone.Infrastructure.Repositories.Interfaces;
 global using AmazonClone.Infrastructure.Repositories;
-global using AmazonClone.Infrastructure.Utils;
+global using AmazonClone.Application.Utils;
 global using AmazonClone.Application.Services.Interfaces;
 global using AmazonClone.Application.Services;
-

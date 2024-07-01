@@ -1,6 +1,4 @@
-﻿using AmazonClone.Domain.DTOs;
-
-namespace AmazonClone.Presentation.Areas.Admin.Controllers
+﻿namespace AmazonClone.Presentation.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = RolesConsts.ADMIN_USER)]
@@ -20,7 +18,7 @@ namespace AmazonClone.Presentation.Areas.Admin.Controllers
         {
             var allDbCategories = _categoryService.GetAll();
 
-            var result = _mapper.Map<IEnumerable<CategoryDto>>(allDbCategories);
+            var result = _mapper.Map<IEnumerable<AdminCategoryViewModel>>(allDbCategories);
 
             return View(result);
         }
@@ -30,20 +28,24 @@ namespace AmazonClone.Presentation.Areas.Admin.Controllers
         {
             // Create
             if (id is null or 0)
-                return View(new CategoryDto());
+                return View(new AdminCategoryViewModel());
 
             //Update
             var dbCategory = _categoryService.Get(x => x.Id == id);
-            var categoryDto = _mapper.Map<CategoryDto>(dbCategory);
-            return View(categoryDto);
+            var model = _mapper.Map<AdminCategoryViewModel>(dbCategory);
+            return View(model);
         }
 
 
 
         [HttpPost]
-        public IActionResult Upsert(CategoryDto categoryDto)
+        public IActionResult Upsert(AdminCategoryViewModel model)
         {
-            var category = _mapper.Map<Category>(categoryDto);
+            if (!ModelState.IsValid)
+                return View(model);
+
+
+            var category = _mapper.Map<Category>(model);
 
             if (category.Id == 0)
             {

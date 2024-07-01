@@ -1,19 +1,19 @@
-﻿using AmazonClone.Domain.DTOs;
-using AmazonClone.Domain.ViewModels.Admin;
-
-namespace AmazonClone.Presentation
+﻿namespace AmazonClone.Presentation
 {
     public class MapperProfile : Profile
     {
         public MapperProfile()
         {
-            CreateMap<Category, CategoryDto>()
+            CreateMap<Category, AdminCategoryViewModel>()
                 .ReverseMap();
 
-            CreateMap<AdminUpsertProductVM, Product>()
+            CreateMap<AdminUpsertProductViewModel, Product>()
                 .ReverseMap();
 
-            CreateMap<AdminDetailsProductVM, Product>()
+            CreateMap<AdminDetailsProductViewModel, Product>()
+                .ReverseMap();
+
+            CreateMap<AdminUserViewModel, ApplicationUser>()
                 .ReverseMap();
 
             CreateMap<CustomerDetailsProductViewModel, Product>()

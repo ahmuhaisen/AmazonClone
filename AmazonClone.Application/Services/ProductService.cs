@@ -4,7 +4,7 @@ using AmazonClone.Domain.Entities;
 using AmazonClone.Domain.ViewModels.Customer;
 using AmazonClone.Infrastructure.Repositories.Interfaces;
 using AmazonClone.Application.Services.Interfaces;
-using AmazonClone.Infrastructure.Utils;
+using AmazonClone.Application.Utils;
 
 
 namespace AmazonClone.Application.Services
@@ -54,7 +54,10 @@ namespace AmazonClone.Application.Services
 
             return GetAllByCategoryId((int)categoryId).Select(x => ConvertProductToViewModel(x)).ToList();
         }
-
+        public int GetNumberOfAvailableProducts()
+        {
+            return _unitOfWork.Product.Count();
+        }
 
 
         //Update
@@ -67,7 +70,7 @@ namespace AmazonClone.Application.Services
         public string UpsertProductImage(string ImageUrl, IFormFile? file, string wwwRootPath)
         {
             string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-            string productPath = Path.Combine(wwwRootPath, FileSettings.ProductsImagesPath);
+            string productPath = Path.Combine(wwwRootPath, FileConsts.ProductsImagesPath);
 
             if (!string.IsNullOrEmpty(ImageUrl))
             {
@@ -85,7 +88,7 @@ namespace AmazonClone.Application.Services
                 file.CopyTo(fileStream);
             }
 
-            return @$"\{FileSettings.ProductsImagesPath}\{fileName}";
+            return @$"\{FileConsts.ProductsImagesPath}\{fileName}";
         }
 
 
@@ -110,9 +113,6 @@ namespace AmazonClone.Application.Services
                 Price = product.Price,
             };
 
-        public int GetNumberOfAvailableProducts()
-        {
-            return _unitOfWork.Product.Count();
-        }
+        
     }
 }

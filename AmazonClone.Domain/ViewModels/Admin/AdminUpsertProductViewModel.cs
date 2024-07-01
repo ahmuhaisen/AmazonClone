@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace AmazonClone.Domain.ViewModels.Admin
 {
-    public class AdminUpsertProductVM
+    public class AdminUpsertProductViewModel
     {
         public int Id { get; set; }
 

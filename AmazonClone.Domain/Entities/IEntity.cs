@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace AmazonClone.Domain.Entities;
 
-namespace AmazonClone.Domain.Entities
+public interface IEntity
 {
-    public interface IEntity
-    {
-        int Id { get; set; }
-    }
+    int Id { get; set; }
 }
