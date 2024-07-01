@@ -1,4 +1,59 @@
-﻿
+﻿@model AdminHomeViewModel
 
 
 <h1>Admin Home Page</h1>
+
+
+<div class="row mt-4">
+    <div class="col-lg-3 mb-3">
+        <div class="card bg-secondary text-white border-secondary rounded-3 shadow-sm w-100">
+           <div class="card-body">
+                <i class="bi bi-people-fill fs-2 me-2"></i>
+                <span class="fw-bold fs-3">@(Model.NoOfUsers)</span>
+           </div>
+           <div class="card-footer d-flex justify-content-between">
+               <span>Active Users</span>
+                <a asp-controller="Users" class="btn btn-warning text-white btn-sm grow-xsm">Manage All</a>
+           </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 mb-3">
+        <div class="card bg-info text-white border-secondary rounded-3 shadow-sm w-100">
+            <div class="card-body">
+                <i class="bi bi-bag fs-2 me-2"></i>
+                <span class="fw-bold fs-3">@(Model.NoOfOrders)</span>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <span>Orders</span>
+                <a asp-controller="Order" class="btn btn-warning text-white btn-sm grow-xsm">See All</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 mb-3">
+        <div class="card bg-success text-white border-secondary rounded-3 shadow-sm w-100">
+            <div class="card-body">
+                <i class="bi bi-basket fs-2 me-2"></i>
+                <span class="fw-bold fs-3">@(Model.NoOfProducts)</span>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <span>Products</span>
+                <a asp-controller="Product" class="btn btn-warning text-white btn-sm grow-xsm">Manage All</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 mb-3">
+        <div class="card bg-danger text-white border-secondary rounded-3 shadow-sm w-100">
+            <div class="card-body">
+                <i class="bi bi-cash-stack fs-2 me-2"></i>
+                <span class="fw-bold fs-3">@(Model.SalesVolume.ToString("C"))</span>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <span>Sales Volume</span>
+                <small>Till @(DateTime.Now.ToShortTimeString())</small>
+            </div>
+        </div>
+    </div>
+</div>

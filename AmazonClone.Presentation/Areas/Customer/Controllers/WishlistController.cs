@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AmazonClone.Presentation.Areas.Customer.Controllers
 {
     [Area("Customer")]
+    [Authorize(Roles = RolesConsts.CUSTOMER_USER)]
     public class WishlistController : Controller
     {
         private readonly IWishlistService _wishlistService;

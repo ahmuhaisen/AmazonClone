@@ -1,6 +1,7 @@
 ﻿namespace AmazonClone.Presentation.Areas.Customer.Controllers
 {
     [Area("Customer")]
+    [Authorize(Roles = RolesConsts.CUSTOMER_USER)]
     public class ShipmentController : Controller
     {
         private readonly IShipmentService _shipmentService;

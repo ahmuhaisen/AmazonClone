@@ -39,6 +39,16 @@ namespace AmazonClone.Application.Services
             return _unitOfWork.Order.GetAllBy(filter);
         }
 
+        public int GetNoOfOrders()
+        {
+            return _unitOfWork.Order.Count();
+        }
+
+        public int GetSalesVolume()
+        {
+            return _unitOfWork.Order.GetSalesVolume();
+        }
+
         public void PlaceOrder(int shipmentId, int paymentId, string userId)
         {
 

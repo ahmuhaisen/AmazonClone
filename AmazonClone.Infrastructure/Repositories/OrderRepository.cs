@@ -15,9 +15,19 @@ namespace AmazonClone.Infrastructure.Repositories
             _db = db;
         }
 
+        public int Count()
+        {
+            return _db.Orders.Count();
+        }
+
         public IEnumerable<Order> GetAllBy(Expression<Func<Order, bool>> filter)
         {
             return _db.Orders.Where(filter).AsNoTracking();
+        }
+
+        public int GetSalesVolume()
+        {
+            return (int)_db.Orders.Sum(x => x.TotalPrice);
         }
     }
 }

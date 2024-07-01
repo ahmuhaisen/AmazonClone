@@ -15,6 +15,11 @@ namespace AmazonClone.Infrastructure.Repositories
             _db = db;
         }
 
+        public int Count()
+        {
+            return _db.Products.Count();
+        }
+
         public new IEnumerable<Product> GetAll()
         {
             var query = _db.Products

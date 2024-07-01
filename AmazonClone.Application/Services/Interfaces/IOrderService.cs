@@ -14,5 +14,7 @@ namespace AmazonClone.Application.Services.Interfaces
         Order Get(int Id);
 
         void PlaceOrder(int shipmentId, int paymentId, string userId);
+        int GetNoOfOrders();
+        int GetSalesVolume();
     }
 }

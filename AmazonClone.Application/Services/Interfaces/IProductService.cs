@@ -15,6 +15,7 @@ namespace AmazonClone.Application.Services.Interfaces
         IEnumerable<Product> GetAll();
         IEnumerable<Product> GetAllByCategoryId(int categoryId);
         IEnumerable<CustomerHomeProductViewModel> GetHomeProductsList(int? categoryId = null);
+        int GetNumberOfAvailableProducts();
 
 
 

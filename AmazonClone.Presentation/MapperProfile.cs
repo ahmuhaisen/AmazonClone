@@ -1,6 +1,7 @@
-﻿using AmazonClone.Domain.ViewModels.Admin;
+﻿using AmazonClone.Domain.DTOs;
+using AmazonClone.Domain.ViewModels.Admin;
 
-namespace AmazonClone.Presentation.DTOs
+namespace AmazonClone.Presentation
 {
     public class MapperProfile : Profile
     {
@@ -26,7 +27,6 @@ namespace AmazonClone.Presentation.DTOs
 
             CreateMap<CustomerOrderItemViewModel, OrderItem>()
                .ReverseMap();
-
         }
     }
 }

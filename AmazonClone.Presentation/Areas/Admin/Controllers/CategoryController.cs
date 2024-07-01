@@ -1,4 +1,6 @@
-﻿namespace AmazonClone.Presentation.Areas.Admin.Controllers
+﻿using AmazonClone.Domain.DTOs;
+
+namespace AmazonClone.Presentation.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = RolesConsts.ADMIN_USER)]

@@ -109,5 +109,10 @@ namespace AmazonClone.Application.Services
                 DiscountPercentage = product.DiscountPercentage,
                 Price = product.Price,
             };
+
+        public int GetNumberOfAvailableProducts()
+        {
+            return _unitOfWork.Product.Count();
+        }
     }
 }

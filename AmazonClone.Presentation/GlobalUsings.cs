@@ -13,5 +13,4 @@ global using AmazonClone.Infrastructure.Repositories;
 global using AmazonClone.Infrastructure.Utils;
 global using AmazonClone.Application.Services.Interfaces;
 global using AmazonClone.Application.Services;
-global using AmazonClone.Presentation.DTOs;
 
