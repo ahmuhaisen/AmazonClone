@@ -25,9 +25,15 @@
                         <img class="" src="~/images/amazon-logo.png" style="width: 120px" />
                     </a>
                 }
-                else
+                else if (User.IsInRole(RolesConsts.CUSTOMER_USER))
                 {
                     <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">
+                        <img class="" src="~/images/amazon-logo.png" style="width: 120px" />
+                    </a>
+                }
+                else
+                {
+                    <a class="navbar-brand" asp-area="Master" asp-controller="Home" asp-action="Index">
                         <img class="" src="~/images/amazon-logo.png" style="width: 120px" />
                     </a>
                 }
