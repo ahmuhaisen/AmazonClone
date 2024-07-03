@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using AmazonClone.Presentation;
-
+using Microsoft.AspNetCore.Authentication;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -37,6 +37,37 @@ builder.Services.AddScoped<IOrderItemService, OrderItemService>();
 
 
 builder.Services.AddAutoMapper(typeof(MapperProfile));
+
+
+
+builder.Services.AddAuthentication().AddGoogle(options =>
+{
+    IConfigurationSection googleAuthSection = builder.Configuration.GetSection("Authentication:Google");
+
+    options.ClientId = googleAuthSection["ClientId"]!;
+    options.ClientSecret = googleAuthSection["ClientSecret"]!;
+
+    options.ClaimActions.MapJsonKey("urn:google:given_name", "given_name", "string");
+    options.ClaimActions.MapJsonKey("urn:google:family_name", "family_name", "string");
+    options.ClaimActions.MapJsonKey("urn:google:profilepicture", "picture", "url");
+
+    options.SaveTokens = true;
+
+    options.Events.OnCreatingTicket = ctx =>
+    {
+        List<AuthenticationToken> tokens = ctx.Properties.GetTokens().ToList();
+        tokens.Add(new AuthenticationToken()
+        {
+            Name = "TicketCreated",
+            Value = DateTime.UtcNow.ToString()
+        });
+
+        ctx.Properties.StoreTokens(tokens);
+
+        return Task.CompletedTask;
+    };
+});
+
 
 builder.Services.AddControllersWithViews();
 var app = builder.Build();

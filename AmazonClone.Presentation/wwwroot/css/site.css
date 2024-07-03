@@ -160,3 +160,21 @@ input[type=number] {
     -moz-appearance: textfield; /* Firefox */
 }
 
+.or-separator {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #666; 
+    font-size: 16px;
+    margin: 20px 0; 
+}
+
+    .or-separator::before,
+    .or-separator::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #ccc; 
+        margin: 0 10px;
+    }

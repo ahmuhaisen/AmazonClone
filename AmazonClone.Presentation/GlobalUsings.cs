@@ -3,6 +3,7 @@ global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Authentication;
 global using AmazonClone.Domain.Entities;
 global using AmazonClone.Domain.ViewModels;
 global using AmazonClone.Domain.ViewModels.Admin;
