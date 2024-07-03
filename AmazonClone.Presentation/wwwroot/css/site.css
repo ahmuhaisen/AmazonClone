@@ -93,6 +93,14 @@ body {
         overflow: hidden;
     }
 
+.popular-category {
+    transition: all .15s ease-in-out;
+}
+    .popular-category:hover {
+        background-color: #ffd000 !important;
+        color: white !important;
+    }
+
 
 .master-page-header-card {
     background: radial-gradient(circle, #e99317 0, #e97d17 87%);

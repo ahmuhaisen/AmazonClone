@@ -1,6 +1,8 @@
 ﻿@model CustomerOrderDetailsViewModel
 
-
+@{
+    ViewData["Title"] = $"Order No.{Model.CurrentOrder.Id}";
+}
 
 <h2 class="h2 fw-bolder">Order Details</h2>
 

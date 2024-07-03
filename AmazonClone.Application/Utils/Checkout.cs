@@ -10,7 +10,7 @@ public class Checkout
     public double SubTotalTax { get; private set; }
     public double Total { get; private set; }
 
-    private static Checkout _instance;
+    private static Checkout? _instance;
 
     public static Checkout Instance
     {
@@ -31,6 +31,11 @@ public class Checkout
         _instance.Total = calculator.GetTotal();
 
         return _instance;
+    }
+
+    public static void Reset()
+    {
+        _instance = null;
     }
 
 }

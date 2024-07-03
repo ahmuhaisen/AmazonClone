@@ -1,5 +1,10 @@
 ﻿@model UserDetailsViewModel
 
+@{
+    ViewData["Title"] = Model.FullName;
+}
+
+
 <div class="d-flex justify-content-center h-100">
     <div class="w-75">
         <div class=" h2 fw-bold">
@@ -11,7 +16,7 @@
         <div class="row d-flex justify-content-between">
             <div class="col-md-3 col-sm-12">
                 <div class="mb-3">
-                    <img src="@(Model.ProfilePictureUrl)" class="rounded-circle img-fluid details-profile-picture" />
+                    <img src=@(Model.ProfilePictureUrl??"/images/user-placeholder.png") class="rounded-circle img-fluid details-profile-picture" />
                 </div>
                 <div>
                     <h4 class="fw-bold">@(Model.FullName)</h4>

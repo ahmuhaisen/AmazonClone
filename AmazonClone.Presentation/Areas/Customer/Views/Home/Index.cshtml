@@ -12,7 +12,7 @@
     <div class="mt-5">
         @foreach (var category in Model.PopularCategories)
         {
-            <a asp-action="Index" asp-route-categoryID="@(category.Id)" class="bg-white fs-2 shadow-sm rounded-3 text-muted mx-2 p-3">
+            <a asp-action="Index" asp-route-categoryID="@(category.Id)" class="bg-white fs-2 shadow-sm rounded-3 text-muted mx-2 p-3 popular-category">
                 <i class="@category.IconString" title="@(category.Name)"></i>
             </a>
         }
@@ -29,7 +29,7 @@
 
 
 @section Scripts {
- 
+
 
     @{
         <script src="~/js/customer-product-list.js"></script>

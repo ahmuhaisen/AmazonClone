@@ -79,6 +79,7 @@ namespace AmazonClone.Application.Services
 
             _cartService.RemoveRange(cartItems);
             _orderItemService.AddRange(orderItems);
+            _checkoutService.ResetCheckout();
         }
     }
 }

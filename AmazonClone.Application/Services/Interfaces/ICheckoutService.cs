@@ -12,5 +12,8 @@ namespace AmazonClone.Application.Services.Interfaces
 
         double GetCartTotalAmount();
 
+        public void ResetCheckout();
+
+
     }
 }

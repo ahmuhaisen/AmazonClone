@@ -28,5 +28,10 @@ namespace AmazonClone.Application.Services
                 Total = checkoutData.Total,
             };
         }
+
+        public void ResetCheckout()
+        {
+            Checkout.Reset();
+        }
     }
 }
