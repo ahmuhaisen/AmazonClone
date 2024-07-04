@@ -1,18 +1,22 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Extensions.Options;
+using System.Configuration;
+using System.Drawing;
 
 namespace AmazonClone.Presentation
 {
     public static class ProgramExtensions
     {
-        public static void AddApplicationDbContext(this IServiceCollection collection)
+        public static void AddApplicationDbContext(this IServiceCollection collection, string constr)
         {
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
             collection.AddDbContext<AppDbContext>(o =>
             {
                 o.UseSqlServer(
-
-                       configuration.GetConnectionString("DefaultConnection"));
+                    constr
+                       //configuration.GetConnectionString("DefaultConnection")
+                       );
             });
         }
 
@@ -38,16 +42,12 @@ namespace AmazonClone.Presentation
             collection.AddScoped<IOrderItemService, OrderItemService>();
         }
 
-        public static void AddExternalAuthentications(this IServiceCollection collection)
+        public static void AddGoogleAsAnExternalAuthentication(this IServiceCollection collection, WebApplicationBuilder builder)
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-
             collection.AddAuthentication().AddGoogle(options =>
             {
-                IConfigurationSection googleAuthSection = configuration.GetSection("Authentication:Google");
-
-                options.ClientId = googleAuthSection["ClientId"]!;
-                options.ClientSecret = googleAuthSection["ClientSecret"]!;
+                options.ClientId = builder.Configuration["Authentication:Google:ClientId"]!; ;
+                options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]!; 
 
                 options.ClaimActions.MapJsonKey("urn:google:given_name", "given_name", "string");
                 options.ClaimActions.MapJsonKey("urn:google:family_name", "family_name", "string");

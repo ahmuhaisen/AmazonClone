@@ -4,7 +4,11 @@
     {
         public MapperProfile()
         {
-            CreateMap<Category, AdminCategoryViewModel>()
+            CreateMap<AdminUserViewModel, ApplicationUser>()
+                .ReverseMap();
+
+
+            CreateMap<AdminCategoryViewModel, Category>()
                 .ReverseMap();
 
             CreateMap<AdminUpsertProductViewModel, Product>()
@@ -13,8 +17,6 @@
             CreateMap<AdminDetailsProductViewModel, Product>()
                 .ReverseMap();
 
-            CreateMap<AdminUserViewModel, ApplicationUser>()
-                .ReverseMap();
 
             CreateMap<CustomerDetailsProductViewModel, Product>()
                 .ReverseMap();

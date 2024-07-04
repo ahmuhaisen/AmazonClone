@@ -9,7 +9,7 @@ builder.Services.AddControllers()
         x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve); ;
 
 
-builder.Services.AddApplicationDbContext();
+builder.Services.AddApplicationDbContext(builder.Configuration.GetConnectionString("DefaultConnection")!);
 
 builder.Services.AddApplicationUser();
 
@@ -17,7 +17,7 @@ builder.Services.AddScopedDependencies();
 
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 
-builder.Services.AddExternalAuthentications();
+builder.Services.AddGoogleAsAnExternalAuthentication(builder);
 
 builder.Services.AddControllersWithViews();
 
