@@ -1,4 +1,5 @@
 ﻿global using AutoMapper;
+global using System.Text.Json.Serialization;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Identity;
@@ -14,3 +15,4 @@ global using AmazonClone.Infrastructure.Repositories;
 global using AmazonClone.Application.Utils;
 global using AmazonClone.Application.Services.Interfaces;
 global using AmazonClone.Application.Services;
+global using AmazonClone.Presentation;

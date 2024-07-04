@@ -144,8 +144,12 @@ body {
     border-radius: 5px;
 }
 
+.checkout-card {
+    height: 300px;
+}
 
-.delete-button:hover{
+
+.delete-button:hover {
     cursor: pointer;
 }
 

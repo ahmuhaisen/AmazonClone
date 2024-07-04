@@ -23,7 +23,7 @@
                 <div class="w-75">
                     @foreach (var cartItem in Model.CartItems)
                     {
-                        <div class="card cart-item-card rounded-3 border-0 bg-white shadow-sm w-100 mb-3 p-2">
+                        <div class="card cart-item-card rounded-3 bg-white shadow-sm w-100 mb-3 p-2">
                             <div class="row h-100">
                                 <div class="col-3 d-flex align-items-center">
                                     <a asp-controller="Product" asp-action="Details" asp-route-id="@(cartItem.ProductId)" class="grow-sm">
@@ -52,26 +52,8 @@
 
             <div class="col-md-6 col-sm-12">
                 <div class="w-75">
-                    <div class="card bg-white border-0 shadow-sm p-4" style="height: 450px">
-
-                        <div class="alert alert-success p-2 w-100">
-                            Use code <strong>AHMAMZ2024</strong> for <strong>20%</strong> discount.
-                        </div>
-
-
-                        <hr class="text-muted my-0 py-0" />
-
-
-                        <div class="input-group mt-3">
-                            <input type="text" class="form-control promocode-input" placeholder="Promocode" aria-label="Promocode" aria-describedby="button-addon2">
-                            <button class="btn btn-dark w-25" type="button" id="promocode-button">Apply</button>
-                        </div>
-
-
-                        <hr class="text-muted my-3 py-0" />
-
-
-                        <div class="checkout-section">
+                    <div class="card checkout-card bg-white rounded-3 shadow-sm">
+                        <div class="card-body">
                             <div class="d-flex justify-content-between my-2">
                                 <span class="fw-bold fs-5">Sub-Total</span>
                                 <span class="fw-bold fs-5">@(Model.CheckoutSection.SubTotal.ToString("C"))</span>
@@ -92,9 +74,10 @@
                         </div>
 
 
-                        <div>
-                            <a asp-controller="Shipment" asp-action="Index"
-                                class="btn btn-warning btn-md text-white fw-bolder grow-xsm w-100 mt-3">Proceed to Payment</a>
+                        <div class="card-footer p-3">
+                            <a asp-controller="Shipment" class="btn btn-warning btn-md text-white fw-bolder w-100 grow-xsm">
+                                Proceed to Payment
+                            </a>
                         </div>
                     </div>
                 </div>
