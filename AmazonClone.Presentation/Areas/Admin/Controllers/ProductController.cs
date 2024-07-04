@@ -10,7 +10,10 @@
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IMapper _mapper;
 
-        public ProductController(IProductService productService, ICategoryService categoryService, IWebHostEnvironment webHostEnvironment, IMapper mapper)
+        public ProductController(IProductService productService,
+            ICategoryService categoryService,
+            IWebHostEnvironment webHostEnvironment,
+            IMapper mapper)
         {
             _productService = productService;
             _categoryService = categoryService;

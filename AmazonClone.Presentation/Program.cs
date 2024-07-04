@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using AmazonClone.Presentation;
-using Microsoft.AspNetCore.Authentication;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

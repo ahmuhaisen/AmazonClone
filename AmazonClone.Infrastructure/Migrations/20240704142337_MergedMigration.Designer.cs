@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AmazonClone.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240626102541_AddWishlistTable")]
-    partial class AddWishlistTable
+    [Migration("20240704142337_MergedMigration")]
+    partial class MergedMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -103,6 +103,36 @@ namespace AmazonClone.Infrastructure.Migrations
                     b.ToTable("Users", "security");
                 });
 
+            modelBuilder.Entity("AmazonClone.Domain.Entities.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(100)
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CartItems", (string)null);
+                });
+
             modelBuilder.Entity("AmazonClone.Domain.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -164,6 +194,99 @@ namespace AmazonClone.Infrastructure.Migrations
                             IconString = "fa-solid fa-futbol",
                             Name = "Sports & Outdoors"
                         });
+                });
+
+            modelBuilder.Entity("AmazonClone.Domain.Entities.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<int>("PaymentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShipmentId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PaymentId")
+                        .IsUnique();
+
+                    b.HasIndex("ShipmentId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders", (string)null);
+                });
+
+            modelBuilder.Entity("AmazonClone.Domain.Entities.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderItems", (string)null);
+                });
+
+            modelBuilder.Entity("AmazonClone.Domain.Entities.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Payments", (string)null);
                 });
 
             modelBuilder.Entity("AmazonClone.Domain.Entities.Product", b =>
@@ -255,6 +378,53 @@ namespace AmazonClone.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("AmazonClone.Domain.Entities.Shipment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HomeAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PinCode")
+                        .IsRequired()
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Shipments", (string)null);
+                });
+
             modelBuilder.Entity("AmazonClone.Domain.Entities.WishlistItem", b =>
                 {
                     b.Property<int>("Id")
@@ -276,7 +446,7 @@ namespace AmazonClone.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Wishlist", (string)null);
+                    b.ToTable("WishlistItems", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -412,6 +582,71 @@ namespace AmazonClone.Infrastructure.Migrations
                     b.ToTable("UserTokens", "security");
                 });
 
+            modelBuilder.Entity("AmazonClone.Domain.Entities.CartItem", b =>
+                {
+                    b.HasOne("AmazonClone.Domain.Entities.Product", "Product")
+                        .WithMany("Cart")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AmazonClone.Domain.Entities.ApplicationUser", "User")
+                        .WithMany("Cart")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AmazonClone.Domain.Entities.Order", b =>
+                {
+                    b.HasOne("AmazonClone.Domain.Entities.Payment", "Payment")
+                        .WithOne("Order")
+                        .HasForeignKey("AmazonClone.Domain.Entities.Order", "PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AmazonClone.Domain.Entities.Shipment", "Shipment")
+                        .WithOne("Order")
+                        .HasForeignKey("AmazonClone.Domain.Entities.Order", "ShipmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AmazonClone.Domain.Entities.ApplicationUser", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Payment");
+
+                    b.Navigation("Shipment");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AmazonClone.Domain.Entities.OrderItem", b =>
+                {
+                    b.HasOne("AmazonClone.Domain.Entities.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AmazonClone.Domain.Entities.Product", "Product")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("AmazonClone.Domain.Entities.Product", b =>
                 {
                     b.HasOne("AmazonClone.Domain.Entities.Category", "Category")
@@ -495,6 +730,10 @@ namespace AmazonClone.Infrastructure.Migrations
 
             modelBuilder.Entity("AmazonClone.Domain.Entities.ApplicationUser", b =>
                 {
+                    b.Navigation("Cart");
+
+                    b.Navigation("Orders");
+
                     b.Navigation("Wishlist");
                 });
 
@@ -503,9 +742,30 @@ namespace AmazonClone.Infrastructure.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("AmazonClone.Domain.Entities.Order", b =>
+                {
+                    b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("AmazonClone.Domain.Entities.Payment", b =>
+                {
+                    b.Navigation("Order")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("AmazonClone.Domain.Entities.Product", b =>
                 {
+                    b.Navigation("Cart");
+
+                    b.Navigation("OrderItems");
+
                     b.Navigation("Wishlist");
+                });
+
+            modelBuilder.Entity("AmazonClone.Domain.Entities.Shipment", b =>
+                {
+                    b.Navigation("Order")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
