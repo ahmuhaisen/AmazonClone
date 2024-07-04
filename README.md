@@ -30,19 +30,16 @@ This project is built with the following technologies and tools:
 
 ---
 
-> [!tip] User Login
+> User Login
 > ![image](https://github.com/ahmuhaisen/AmazonClone/assets/132080495/11b42946-67c7-45c1-aa42-d4b8b9c1a322)
 
-> [!tip] Customer Home Page
+> Customer Home Page
 > ![image](https://github.com/ahmuhaisen/AmazonClone/assets/132080495/aa5c570f-ff49-4ab9-ba4a-abd6cdc7207e)
 
-> [!tip] Admin Products List
+> Admin Products List
 > ![image](https://github.com/ahmuhaisen/AmazonClone/assets/132080495/eda8a70b-529c-460c-9fae-6fac8d96d28e)
 
-> [!tip] Admin Dashboard
-> ![[Pasted image 20240704201847.png]]
-
-> [!tip] User Info
+> User Info
 > ![Uploading image.png…]()
 
 
