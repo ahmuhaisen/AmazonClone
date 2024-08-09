@@ -1,22 +1,23 @@
 ﻿
 
 $(document).ready(function () {
-    console.log("Document is ready.");
-
-    // Use event delegation to handle dynamically added elements
     $(document).on('click', '.wishlist-button', function (e) {
-        e.preventDefault(); // Prevent default action
+        e.preventDefault(); 
 
         var productId = $(this).data('productid');
-        console.log("Wishlist button clicked. Product ID:", productId);
 
         $.ajax({
             url: '/Customer/Wishlist/AddToWishlist',
             type: 'POST',
             data: { productId: productId },
             success: function (response) {
-                console.log("AJAX call successful. Response:", response);
                 if (response.success) {
+
+                    let wishlistSizeBadge = document.querySelector(".wishlist-size");
+                    let currentDisplayedSize = +wishlistSizeBadge.innerText;
+                    wishlistSizeBadge.innerText = currentDisplayedSize + 1;
+
+
                     Swal.fire({
                         title: "Added!",
                         text: response.message,

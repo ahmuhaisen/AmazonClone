@@ -21,13 +21,18 @@ $(document).ready(function () {
             success: function (response) {
                 console.log("AJAX call successful. Response:", response);
                 if (response.success) {
-                    //Swal.fire({
-                    //    title: "Removed!",
-                    //    text: response.message,
-                    //    icon: "success"
-                    //});
 
-                    // Remove the parent .product-home-list-item
+                    let wishlistSizeBadge = document.querySelector(".wishlist-size");
+
+                    let currentDisplayedSize = +wishlistSizeBadge.innerText;
+                    wishlistSizeBadge.innerText = currentDisplayedSize - 1;
+                    console.log(currentDisplayedSize - 1);
+
+
+                    if (wishlistSizeBadge.innerText == 0) {
+                        location.reload();
+                    }
+
                     $button.closest('.product-home-list-item').fadeOut(250, function () {
                         $(this).remove();
                     });

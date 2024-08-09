@@ -29,5 +29,12 @@ namespace AmazonClone.Infrastructure.Repositories
         {
             return _db.Wishlist.Any(x => x.ProductId == productId && x.UserId == userId);
         }
+
+
+        public int GetWishlistSize(string userId)
+        {
+            return _db.Wishlist.Count(w => w.UserId == userId);
+        }
+
     }
 }

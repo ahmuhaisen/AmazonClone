@@ -63,6 +63,19 @@ public class WishlistController : Controller
 
         return Json(new { success = true, message = "Product removed from your wishlist" });
     }
+
+    [HttpGet]
+    public async Task<JsonResult> GetWishlistSize()
+    {
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user is null)
+            return Json(new { success = false });
+
+        var result = _wishlistService.GetWishlistSize(user.Id);
+
+        return Json(new { size = result });
+    }
     #endregion
 }
 

@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $('#wishlist-button').click(function (e) {
-        e.preventDefault(); // Prevent default action
+        e.preventDefault();
 
         var productId = $(this).data('productid');
 
@@ -10,6 +10,11 @@
             data: { productId: productId },
             success: function (response) {
                 if (response.success) {
+
+                    let wishlistSizeBadge = document.querySelector(".wishlist-size");
+                    let currentDisplayedSize = +wishlistSizeBadge.innerText;
+                    wishlistSizeBadge.innerText = currentDisplayedSize + 1;
+
                     Swal.fire({
                         title: "Added!",
                         text: response.message,

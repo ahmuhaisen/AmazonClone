@@ -4,9 +4,6 @@
     ViewBag.Title = "Cutomer Home";
 }
 
-@* <h1>Customer Home Page</h1> *@
-
-
 <div class="text-center my-5 py-5">
     <h3 class="h3 fw-bolder">Popular categories 🌟</h3>
     <div class="mt-5">
@@ -29,13 +26,9 @@
 
 
 @section Scripts {
-
-
     @{
-        <script src="~/js/customer-product-list.js"></script>
-        <script src="~/js/section-fadein.js"></script>
-
+        <script src="~/js/customer-add-product-to-wishlist.js" asp-append-version="true"></script>
+        <script src="~/js/customer-product-list.js" asp-append-version="true"></script>
+        <script src="~/js/section-fadein.js" asp-append-version="true"></script>
     }
-
-
 }

@@ -8,5 +8,7 @@ namespace AmazonClone.Infrastructure.Repositories.Interfaces
 
 
         bool IsProductInCustomerWishlist(string userId, int productId);
+
+        public int GetWishlistSize(string userId);
     }
 }

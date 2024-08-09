@@ -55,5 +55,10 @@ namespace AmazonClone.Application.Services
             return _unitOfWork.Wishlist.IsProductInCustomerWishlist(userId, productId);
         }
 
+
+        public int GetWishlistSize(string userId)
+        {
+            return _unitOfWork.Wishlist.GetWishlistSize(userId);
+        }
     }
 }
