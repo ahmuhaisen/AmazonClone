@@ -13,7 +13,7 @@
 
         $.ajax({
             url: '/Customer/Cart/RemoveFromCart',
-            type: 'POST',
+            type: 'DELETE',
             data: { productId: productId },
             success: function (response) {
                 console.log("AJAX call successful. Response:", response);

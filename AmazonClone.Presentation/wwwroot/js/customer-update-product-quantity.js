@@ -20,7 +20,7 @@
 
         $.ajax({
             url: '/Customer/Cart/UpdateProductQuantity',
-            type: 'POST',
+            type: 'PUT',
             data: {
                 productId: productId,
                 newQuantity: newQuantity

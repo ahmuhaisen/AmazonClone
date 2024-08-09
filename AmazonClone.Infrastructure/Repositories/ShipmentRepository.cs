@@ -12,7 +12,5 @@ namespace AmazonClone.Infrastructure.Repositories
         {
             _db = db;
         }
-
-       
     }
 }

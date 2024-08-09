@@ -17,16 +17,15 @@ namespace AmazonClone.Infrastructure.Repositories
         }
 
 
-        public void AddRange(IEnumerable<OrderItem> items)
-        {
-            _db.OrderItems.AddRange(items);
-        }
-
-
-
         public IEnumerable<OrderItem> GetAllBy(Expression<Func<OrderItem, bool>> filter)
         {
             return _db.OrderItems.Where(filter).Include(x => x.Product).AsNoTracking();
+        }
+
+
+        public void AddRange(IEnumerable<OrderItem> items)
+        {
+            _db.OrderItems.AddRange(items);
         }
     }
 }

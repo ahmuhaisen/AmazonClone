@@ -16,7 +16,7 @@ $(document).ready(function () {
 
         $.ajax({
             url: '/Customer/Wishlist/RemoveFromWishlist',
-            type: 'POST',
+            type: 'DELETE',
             data: { productId: productId },
             success: function (response) {
                 console.log("AJAX call successful. Response:", response);

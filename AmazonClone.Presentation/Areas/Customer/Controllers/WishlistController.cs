@@ -30,6 +30,19 @@ public class WishlistController : Controller
     }
 
     #region APIs
+    [HttpGet]
+    public async Task<JsonResult> GetWishlistSize()
+    {
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user is null)
+            return Json(new { success = false });
+
+        var result = _wishlistService.GetWishlistSize(user.Id);
+
+        return Json(new { size = result });
+    }
+
     [HttpPost]
     public async Task<JsonResult> AddToWishlist(int productId)
     {
@@ -47,7 +60,7 @@ public class WishlistController : Controller
     }
 
 
-    [HttpPost]
+    [HttpDelete]
     public async Task<JsonResult> RemoveFromWishlist(int productId)
     {
         var user = await _userManager.GetUserAsync(User);
@@ -62,19 +75,6 @@ public class WishlistController : Controller
         _wishlistService.Remove(wishlistItem);
 
         return Json(new { success = true, message = "Product removed from your wishlist" });
-    }
-
-    [HttpGet]
-    public async Task<JsonResult> GetWishlistSize()
-    {
-        var user = await _userManager.GetUserAsync(User);
-
-        if (user is null)
-            return Json(new { success = false });
-
-        var result = _wishlistService.GetWishlistSize(user.Id);
-
-        return Json(new { size = result });
     }
     #endregion
 }

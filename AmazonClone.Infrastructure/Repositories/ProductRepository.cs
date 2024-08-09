@@ -21,7 +21,6 @@ namespace AmazonClone.Infrastructure.Repositories
         }
 
 
-
         public new IEnumerable<Product> GetAll()
         {
             var query = _db.Products

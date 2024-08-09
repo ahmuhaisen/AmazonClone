@@ -58,7 +58,7 @@ namespace AmazonClone.Application.Services
 
         public int GetWishlistSize(string userId)
         {
-            return _unitOfWork.Wishlist.GetWishlistSize(userId);
+            return _unitOfWork.Wishlist.GetCustomerWishlistSize(userId);
         }
     }
 }
