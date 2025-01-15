@@ -1,6 +1,7 @@
-
-
 # AmazonClone
+
+![image](https://github.com/user-attachments/assets/f71fae4e-e616-4971-95e3-a57d77010129)
+
 
 ## Introduction
 
